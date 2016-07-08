@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/activity_cancel_booking" android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <ScrollView style="@style/mama">
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
+            <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
+                <TextView android:textSize="20.0dip" android:textColor="#ffd50000" android:text="Cancel Booking" style="@style/topTitleText" />
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+            <LinearLayout style="@style/mpwcvw"
+                android:padding="10dp"
+                >
+                <TextView android:paddingLeft="18.0dip"
+                    android:paddingTop="15.0dip"
+                    android:paddingBottom="10.0dip"
+                    android:text="Booking No : #2789"
+                    style="@style/mpwc" />
+                <TextView
+                    android:text="Reason for Cancelling"
+                    android:textColor="@color/colorPrimaryDark"
+                    style="@style/confirmBooking_QueText"
+                    />
+                <Spinner android:id="@+id/cancel_reason" style="@style/mpwc" />
+                <TextView
+                    style="@style/mpwc"
+                    android:padding="15dp"
+                    android:textSize="16dp"
+                    android:lineSpacingExtra="10dp"
+                    android:text="Payment will be refunded to your account within 10-15 days"/>
+                <Button
+                    style="@style/mpwc"
+                    android:text="Confirm Cancellation"
+                    android:background="#d50000"
+                    android:textColor="#ffffff"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="50dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

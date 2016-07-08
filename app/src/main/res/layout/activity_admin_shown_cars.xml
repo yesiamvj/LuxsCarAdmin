@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_admin_shown_cars"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ulgebra.luxscaradmin.AdminShownCars">
+    <ScrollView style="@style/mama" android:paddingBottom="0dp">
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc" android:layout_marginBottom="50dp">
+
+            <LinearLayout style="@style/mpwc">
+                <TextView android:id="@+id/BrowseCarsDateText" android:text="Cars shown to Users" style="@style/browse_car_dateText" />
+            </LinearLayout>
+            <LinearLayout style="@style/mpwc">
+                <TextView android:paddingLeft="18.0dip" android:paddingTop="10.0dip" android:text="Select a Car from the List to View" style="@style/mpwc" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_hold"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/activity_single_car_detail" android:layout_width="fill_parent" android:layout_height="fill_parent">
+    <ScrollView style="@style/mama">
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
+            <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
+                <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Audi VB Tuning" style="@style/topTitleText" />
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:background="#ffffffff" style="@style/mpwc">
+                <LinearLayout style="@style/singleCar_container">
+                    <LinearLayout android:orientation="vertical" android:background="#ffffffff" style="@style/mpwc">
+                        <Button android:text="Book This Car Now" style="@style/carDetilEndBtn" />
+                        <TextView android:text="Cost per Day" style="@style/confirmBooking_QueText" />
+                        <TextView android:text="Rs.1,000" style="@style/confirmBooking_AnsText" />
+                        <TextView android:text="Car Photos" style="@style/confirmBooking_QueText" />
+                        <ImageView android:src="@drawable/sample_car" style="@style/browse_car_image" />
+                        <ImageView android:src="@drawable/sample_car" style="@style/browse_car_image" />
+                        <ImageView android:src="@drawable/sample_car" style="@style/browse_car_image" />
+                    </LinearLayout>
+                </LinearLayout>
+                <Button android:text="Book This Car Now" style="@style/carDetilEndBtn" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

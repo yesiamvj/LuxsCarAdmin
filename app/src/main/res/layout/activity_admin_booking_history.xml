@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_admin_booking_history"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ulgebra.luxscaradmin.AdminBookingHistory">
+    <ScrollView style="@style/mama">
+        <LinearLayout  style="@style/mpwc" android:orientation="vertical">
+        <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
+            <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Booking Timeline" style="@style/topTitleText" />
+            <Button style="@style/topTitleShadow" />
+        </LinearLayout>
+            <LinearLayout style="@style/mpwc">
+                <TextView android:paddingLeft="18.0dip" android:paddingTop="5.0dip" android:paddingBottom="10.0dip" android:text="Click to View / Edit" style="@style/mpwc" />
+            </LinearLayout>
+        <LinearLayout android:orientation="vertical" style="@style/mpwc" android:padding="10dp"  >
+
+            <LinearLayout android:orientation="vertical" android:onClick="goToBookingDetails" android:layout_marginBottom="5dp" style="@style/mpwc">
+                <LinearLayout style="@style/mpwcvw">
+                    <TextView style="@style/bookingHistory_ID"
+                        android:text="Booking No : #2789"
+                        android:background="#65009f"
+                        android:textColor="#ffffff"
+                        />
+                    <Button style="@style/topTitleShadow" android:background="#65009f" />
+
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="RaviKumar"
+                        android:textColor="#ffa000"
+                        />
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="9994453787"
+                        android:textColor="#1565c0"
+                        />
+
+                    <TextView  style="@style/bookingHistory_carDate"
+                        android:text="10.6.17 to 12.6.17"
+                        />
+
+                    <TextView style="@style/bookingHistory_carName"
+                        android:text="Toyoto Innova"
+                        android:textColor="#020000"
+                        />
+                    <TextView
+                        android:text="Paid Rs.1000 On 12.7.16 @ 10.10pm"
+                        style="@style/bookingHistory_edit"
+                        />
+                </LinearLayout>
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+
+            <LinearLayout android:orientation="vertical" android:onClick="goToBookingDetails" style="@style/mpwc" android:layout_marginBottom="5dp">
+                <LinearLayout style="@style/mpwcvw">
+                    <TextView style="@style/bookingHistory_ID"
+                        android:text="Cancellation Booking No : #2789"
+                        android:background="#b71c1c"
+                        android:textColor="#ffffff"
+                        />
+                    <Button style="@style/topTitleShadow" android:background="#b71c1c" />
+
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="RaviKumar"
+                        android:textColor="#ffa000"
+                        />
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="9994453787"
+                        android:textColor="#1565c0"
+                        />
+
+
+
+                    <TextView style="@style/bookingHistory_carName"
+                        android:text="Accidentally Booked"
+                        android:textColor="#020000"
+                        />
+                    <TextView
+                        android:text="On 12.7.16 @ 10.10pm"
+                        style="@style/bookingHistory_edit"
+                        />
+                </LinearLayout>
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+
+            <LinearLayout android:orientation="vertical" android:onClick="goToBookingDetails" style="@style/mpwc" android:layout_marginBottom="5dp">
+                <LinearLayout style="@style/mpwcvw">
+                    <TextView style="@style/bookingHistory_ID"
+                        android:text="Edited Booking No : #2789"
+                        android:background="#00838f"
+                        android:textColor="#ffffff"
+                        />
+                    <Button style="@style/topTitleShadow" android:background="#00838f"/>
+
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="RaviKumar"
+                        android:textColor="#ffa000"
+                        />
+                    <TextView style="@style/bookingHistory_carDate"
+                        android:text="9994453787"
+                        android:textColor="#1565c0"
+                        />
+
+                    <TextView  style="@style/bookingHistory_carDate"
+                        android:text="10.6.17 to 12.6.17"
+                        />
+
+                    <TextView style="@style/bookingHistory_carName"
+                        android:text="Toyoto Innova"
+                        android:textColor="#020000"
+                        />
+                    <TextView
+                        android:text="Paid Rs.1000 On 12.7.16 @ 10.10pm"
+                        style="@style/bookingHistory_edit"
+                        />
+                </LinearLayout>
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

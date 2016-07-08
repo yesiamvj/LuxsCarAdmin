@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_admin_hidden_cars"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ulgebra.luxscaradmin.AdminHiddenCars">
+    <ScrollView style="@style/mama" android:paddingBottom="0dp">
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" android:layout_marginBottom="100dp" style="@style/mpwc">
+
+            <LinearLayout style="@style/mpwc">
+                <TextView android:id="@+id/BrowseCarsDateText" android:text="Cars hidden to Users" style="@style/browse_car_dateText" />
+            </LinearLayout>
+            <LinearLayout style="@style/mpwc">
+                <TextView android:paddingLeft="18.0dip" android:paddingTop="10.0dip" android:text="Click Show Car to available for users" style="@style/mpwc" />
+            </LinearLayout>
+            <LinearLayout style="@style/singleCar_container">
+                <LinearLayout android:orientation="vertical" android:background="#ffffffff" android:onClick="goToSingleCarDetail" style="@style/mpwc">
+                    <TextView android:text="Audi VB Tuning" style="@style/browse_car_name" />
+                    <TextView android:text="Rs.1000 / day" style="@style/browse_car_price" />
+                    <ImageView android:src="@drawable/sample_car" style="@style/browse_car_image" />
+                </LinearLayout>
+                <Button android:text="Show Car" android:onClick="goToConfirmBooking" style="@style/browse_car_selectBtn" />
+            </LinearLayout>
+            <LinearLayout style="@style/singleCar_container">
+                <LinearLayout android:orientation="vertical" android:background="#ffffffff" style="@style/mpwc">
+                    <TextView android:text="Audi VB Tuning" style="@style/browse_car_name" />
+                    <TextView android:text="Rs.1000 / day" style="@style/browse_car_price" />
+                    <ImageView android:src="@drawable/sample_car" style="@style/browse_car_image" />
+                </LinearLayout>
+                <Button android:text="Show car" style="@style/browse_car_selectBtn" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

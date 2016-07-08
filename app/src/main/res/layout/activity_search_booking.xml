@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_search_booking"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ulgebra.luxscaradmin.SearchBooking">
+        <ScrollView style="@style/mama">
+            <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
+                <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
+                    <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Search Booking" style="@style/topTitleText" />
+                    <Button style="@style/topTitleShadow" />
+                </LinearLayout>
+                <LinearLayout style="@style/mpwc">
+                    <TextView android:paddingLeft="18.0dip" android:paddingTop="5.0dip" android:paddingBottom="8dip" android:text="Welcome to LuxsCar" style="@style/mpwc" />
+                </LinearLayout>
+                <LinearLayout style="@style/mpwcvw" android:padding="10dp" android:layout_margin="10dp">
+                   <LinearLayout style="@style/mpwc" android:orientation="vertical">
+                       <TextView style="@style/mpwcvw"
+                           android:paddingTop="20dp"
+                           android:text="Enter the Booking Id"
+                           android:textSize="16dp"/>
+                       <android.support.design.widget.TextInputLayout
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="25dp"
+                           >
+
+                           <AutoCompleteTextView
+                               android:id="@+id/search_bookingNo"
+                               android:layout_width="match_parent"
+                               android:layout_height="wrap_content"
+                               android:hint="Booking id"
+                               android:paddingLeft="10dp"
+                               android:inputType="textEmailAddress"
+                               android:maxLines="1"
+                               android:singleLine="true" />
+
+                       </android.support.design.widget.TextInputLayout>
+                       <Button style="@style/mpwc"
+                           android:text="VIEW DETAILS"
+                           android:layout_marginTop="15dp"
+                           android:layout_marginBottom="15dp"
+                           android:background="#ffb300"
+                           android:textColor="#ffffff"
+                           android:textSize="16dp"/>
+                   </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
