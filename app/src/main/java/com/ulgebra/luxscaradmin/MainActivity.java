@@ -98,7 +98,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void goToAdminBrowseCars(View view){
-        Intent intent=new Intent(getApplicationContext(),Cars.class);
+
+
+        Intent intent=new Intent(getApplicationContext(),SingleCarDetail.class);
+        int carrid=11;
+        intent.putExtra("car_id",carrid);
         startActivity(intent);
     }
     public void goToAdminSearchBooking(View view){
@@ -109,4 +113,5 @@ public class MainActivity extends AppCompatActivity
         Intent intent=new Intent(getApplicationContext(),AddNewCar.class);
         startActivity(intent);
     }
+
 }

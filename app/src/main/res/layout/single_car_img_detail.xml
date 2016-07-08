@@ -1,9 +1,13 @@
 
+<LinearLayout style="@style/singleCar_container"
+android:id="@+id/car_container"
+xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
-<ImageView
-    android:id="@+id/single_dtl_img"
-    style="@style/browse_car_image"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
 
+        <ImageView
+        android:id="@+id/single_car_image"
 
-                      
+        style="@style/browse_car_image"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
+    </LinearLayout>

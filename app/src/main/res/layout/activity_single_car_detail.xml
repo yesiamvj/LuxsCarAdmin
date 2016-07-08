@@ -16,7 +16,10 @@
 
             <LinearLayout android:orientation="vertical" android:background="#ffffffff" style="@style/mpwc">
                 <LinearLayout style="@style/singleCar_container">
-                    <LinearLayout android:orientation="vertical" android:background="#ffffffff" style="@style/mpwc">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:background="#ffffffff"
+                        style="@style/mpwc">
                         <TextView
 
                             android:text="Car Number"
@@ -32,10 +35,13 @@
                             android:id="@+id/car_cost"
                             android:text="Rs.1,000" style="@style/confirmBooking_AnsText" />
                         <TextView android:text="Car Photos" style="@style/confirmBooking_QueText" />
-                        <ListView
-                            android:id="@+id/car_image_holder"
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:id="@+id/img_lin_cont"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"></ListView>
+                            android:layout_height="match_parent"></LinearLayout>
+
 
                       </LinearLayout>
                 </LinearLayout>

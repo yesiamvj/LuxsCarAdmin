@@ -50,6 +50,7 @@
         </activity>
         <activity android:name=".BookingDetails"
             android:parentActivityName=".AdminBookingHistory"></activity>
+        <activity android:name=".Check_Cars"></activity>
 
     </application>
 

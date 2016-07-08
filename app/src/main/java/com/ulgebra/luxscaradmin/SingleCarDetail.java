@@ -2,21 +2,20 @@ package com.ulgebra.luxscaradmin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,13 +24,17 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -40,7 +43,10 @@ public class SingleCarDetail extends AppCompatActivity {
 
 
     ProgressDialog dialog;
+    ListView listView;
     String cars_name,cost,car_id,car_number;
+
+    String[] all_imgs;
 
     public ArrayList<Car_lists> parents;
 
@@ -49,8 +55,8 @@ public class SingleCarDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_car_detail);
 
-        Intent intent = getIntent();
-        int car_id_input=intent.getIntExtra("car_id",0);
+        Intent intentzc = getIntent();
+        int car_id_input=intentzc.getIntExtra("car_id",1);
 
 
         Log.v("net_res","car id="+car_id_input);
@@ -145,48 +151,12 @@ public class SingleCarDetail extends AppCompatActivity {
             return null;
         }
 
-        private void loadHosts(final ArrayList<Car_lists> newParents)
-        {
-            if (newParents == null){
-                Log.i("err", "returned");
-                return;
-            }else{
-                Log.i("err","ok");
-            }
-
-
-
-            parents = newParents;
-            Log.i("err","lv");
-            // Check for ExpandableListAdapter object
-
-            Log.i("err","fea");
-
-            TextView car_name_inp=(TextView)findViewById(R.id.car_brand_name);
-            car_name_inp.setText(cars_name);
-
-            Log.v("net_res","car name="+cars_name);
-            Log.v("net_res","car no="+car_number);
-            Log.v("net_res","car cost="+cost);
-
-            TextView cost_inp=(TextView)findViewById(R.id.car_cost);
-            cost_inp.setText(cost);
-            TextView caar_num_inp=(TextView)findViewById(R.id.car_number);
-            caar_num_inp.setText(car_number);
-
-           ListView listView=(ListView)findViewById(R.id.car_image_holder);
-            final MyExpandableListAdapter mAdapter = new MyExpandableListAdapter();
-
-            // Set Adapter to ExpandableList Adapter
-            listView.setAdapter(mAdapter);
-
-        }
         protected void onPostExecute(Void unused) {
             // NOTE: You can call UI Element here.
 
             // Close progress dialog
             //Dialog.dismiss();
-         //   dialog.dismiss();
+            //   dialog.dismiss();
 
 
 
@@ -227,15 +197,16 @@ public class SingleCarDetail extends AppCompatActivity {
                         JSONObject jsonChildNode1 = jsonMainNode1.getJSONObject(i);
 
                         String car_image=jsonChildNode1.optString("car_image").toString();
+                      // all_imgs[i]=jsonChildNode1.optString("car_image").toString();;
                         mp.setCar_image(car_image);
 
-                        Log.v("img_car",car_img_len+" "+car_image);
+                        Log.i("img_cnt",car_image+" @ "+i);
                         lists.add(mp);
 
                     }
 
 
-                     jsonMainNode = jsonResponse.optJSONArray("Car_items");
+                    jsonMainNode = jsonResponse.optJSONArray("Car_items");
 
                     /*********** Process each JSON Node ************/
 
@@ -245,22 +216,25 @@ public class SingleCarDetail extends AppCompatActivity {
                     Log.v("net_res","json len="+lengthJsonArr);
                     for(int i=0; i < lengthJsonArr; i++)
                     {
+                        final Car_lists mp=new Car_lists();
 
 
                         /****** Get Object for each JSON node.***********/
                         JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
 
                         /******* Fetch node values **********/
-                        cars_name       = "defal";
-                         cost     = jsonChildNode.optString("cost").toString();
+                        cars_name       = jsonChildNode.optString("car_name").toString();;
+                        cost     = jsonChildNode.optString("cost").toString();
                         car_number = jsonChildNode.optString("car_no").toString();
-                         car_id=jsonChildNode.optString("car_id");
+                        car_id=jsonChildNode.optString("car_id");
 
 
 
 
 
 
+
+                        Log.i("net_err","tot_cnt="+i);
                     }
 
                     loadHosts(lists);
@@ -281,66 +255,53 @@ public class SingleCarDetail extends AppCompatActivity {
 
     }
 
-    private class MyExpandableListAdapter extends BaseAdapter {
-
-        Holder h = new Holder();
-        @Override
-        public int getCount() {
-
-
-            return parents.size();
-
-
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return parents.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            //***** When Child row clicked then this function call ******
-
-            //Log.i("Noise", "parent == "+groupPosition+"=  child : =="+childPosition);
-
-            return position;
-        }
-
-        @Override
-
-        public View getView(int groupPosition, View conView, ViewGroup parent) {
-
-            final Car_lists my_parent = parents.get(groupPosition);
-
-            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-            conView = inflater.inflate(R.layout.single_car_img_detail, parent,false);
-
-            conView.setTag(h);
-
-
-                    h.car_image_inp=(ImageView)findViewById(R.id.single_dtl_img);
-
-            new ImageLoadTask("http://luxscar.com/luxscar_app/"+my_parent.getCar_image(), h.car_image_inp);
-
-
-
-
-            return conView;
-
+    public void loadHosts(final ArrayList<Car_lists> newParents)
+    {
+        if (newParents == null){
+            Log.i("err", "returned");
+            return;
+        }else{
+            Log.i("err","ok");
         }
 
 
-        public class Holder {
 
-            ImageView car_image_inp;
+        parents = newParents;
+        Log.i("err","lv");
+        // Check for ExpandableListAdapter object
 
+        Log.i("err","fea");
+
+        TextView car_name_inp=(TextView)findViewById(R.id.car_brand_name);
+        car_name_inp.setText(cars_name);
+
+        Log.v("net_res","car name="+cars_name);
+        Log.v("net_res","car no="+car_number);
+        Log.v("net_res","car cost="+cost);
+
+        TextView cost_inp=(TextView)findViewById(R.id.car_cost);
+        cost_inp.setText("RS "+cost+" / per day");
+        TextView caar_num_inp=(TextView)findViewById(R.id.car_number);
+        caar_num_inp.setText(car_number);
+        LinearLayout linearLayout=(LinearLayout)findViewById(R.id.img_lin_cont);
+
+        for(int i=0;i<parents.size();i++){
+            final Car_lists my_parent = parents.get(i);
+            View view = LayoutInflater.from(this).inflate(R.layout.single_car_img_detail,null);
+            ImageView imgs=(ImageView)view.findViewById(R.id.single_car_image);
+            new ImageLoadTask("http://luxscar.com/luxscar_app/"+my_parent.getCar_image(), imgs).execute();
+
+            linearLayout.addView(view);
         }
+
+
     }
     public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
 
         private String url;
         private ImageView imageView;
+
+        public Bitmap bitmap;
 
         public ImageLoadTask(String url, ImageView imageView) {
             this.url = url;
@@ -353,10 +314,13 @@ public class SingleCarDetail extends AppCompatActivity {
                 URL urlConnection = new URL(url);
                 HttpURLConnection connection = (HttpURLConnection) urlConnection
                         .openConnection();
+
+                Log.v("url_open",url);
                 connection.setDoInput(true);
                 connection.connect();
                 InputStream input = connection.getInputStream();
                 Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                bitmap=myBitmap;
                 return myBitmap;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -367,10 +331,40 @@ public class SingleCarDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
+
+        Log.v("img_bitmap",bitmap.toString());
             imageView.setImageBitmap(result);
+
         }
 
     }
 
+    private String getRealPathFromURI(String contentURI) {
+        Uri contentUri = Uri.parse(contentURI);
+        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+        if (cursor == null) {
+            return contentUri.getPath();
+        } else {
+            cursor.moveToFirst();
+            int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            return cursor.getString(index);
+        }
+    }
 
+    private Bitmap getImageBitmap(String url) {
+        Bitmap bm = null;
+        try {
+            URL aURL = new URL(url);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (IOException e) {
+            Log.e("bit_map_err", "Error getting bitmap", e);
+        }
+        return bm;
+    }
 }
