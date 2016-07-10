@@ -9,17 +9,25 @@
             <LinearLayout style="@style/mpwcvw"
                 android:padding="10dp"
                 >
-                <TextView android:paddingLeft="18.0dip"
+                <TextView
+                    android:id="@+id/bookingIdHoldr"
+                    android:paddingLeft="18.0dip"
                     android:paddingTop="15.0dip"
                     android:paddingBottom="10.0dip"
-                    android:text="Booking No : #2789"
+                    android:text="Booking No : #xxx"
+
                     style="@style/mpwc" />
                 <TextView
                     android:text="Reason for Cancelling"
                     android:textColor="@color/colorPrimaryDark"
                     style="@style/confirmBooking_QueText"
                     />
-                <Spinner android:id="@+id/cancel_reason" style="@style/mpwc" />
+                <Spinner android:id="@+id/cancel_reason"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    style="@style/mpwc" />
                 <TextView
                     style="@style/mpwc"
                     android:padding="15dp"
@@ -28,6 +36,7 @@
                     android:text="Payment will be refunded to your account within 10-15 days"/>
                 <Button
                     style="@style/mpwc"
+                    android:id="@+id/confirmCancelBtn"
                     android:text="Confirm Cancellation"
                     android:background="#d50000"
                     android:textColor="#ffffff"

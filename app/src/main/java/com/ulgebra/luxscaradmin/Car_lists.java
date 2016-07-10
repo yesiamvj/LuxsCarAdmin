@@ -3,7 +3,7 @@ package com.ulgebra.luxscaradmin;
 /**
  * Created by Vijayakumar on 07/07/2016.
  */
-import java.util.ArrayList;
+
 public class Car_lists {
 
 
@@ -12,7 +12,23 @@ public class Car_lists {
     private String car_image;
     private String car_no;
     private int Car_id;
+    private  String booking_id;
+    private String ride_dure;
+    private String booked_on;
+    private String bk_customer_name;
+    private String bk_customer_mob;
+    private String bookingStatus;
+    private String cancelledOn;
+    private String cancelReason;
 
+
+    public void setBooked_on(String booked_on) {
+        this.booked_on = booked_on;
+    }
+
+    public String getBooked_on() {
+        return booked_on;
+    }
 
     public void set_carname(String its_nm){
         this.car_name=its_nm;
@@ -27,12 +43,16 @@ public class Car_lists {
         this.Car_id=its_nm;
     }
 
-    public void setCar_no(String car_no) {
-        this.car_no = car_no;
+    public void setBooking_id(String booking_id) {
+        this.booking_id = booking_id;
     }
 
-    public String getCar_no() {
-        return car_no;
+    public void setRide_dure(String ride_dure) {
+        this.ride_dure = ride_dure;
+    }
+
+    public String getRide_dure() {
+        return ride_dure;
     }
 
     public String getCar_cost() {
@@ -49,5 +69,49 @@ public class Car_lists {
 
     public int getCar_id() {
         return Car_id;
+    }
+
+    public String getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBk_customer_mob(String bk_customer_mob) {
+        this.bk_customer_mob = bk_customer_mob;
+    }
+
+    public String getBk_customer_mob() {
+        return bk_customer_mob;
+    }
+
+    public void setBk_customer_name(String bk_customer_name) {
+        this.bk_customer_name = bk_customer_name;
+    }
+
+    public String getBk_customer_name() {
+        return bk_customer_name;
+    }
+
+    public void setBookingStatus(String bookingStatus) {
+        this.bookingStatus = bookingStatus;
+    }
+
+    public void setCancelledOn(String cancelledOn) {
+        this.cancelledOn = cancelledOn;
+    }
+
+    public void setCancelReason(String cancelReason) {
+        this.cancelReason = cancelReason;
+    }
+
+    public String getBookingStatus() {
+        return bookingStatus;
+    }
+
+    public String getCancelledOn() {
+        return cancelledOn;
+    }
+
+    public String getCancelReason() {
+        return cancelReason;
     }
 }

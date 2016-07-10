@@ -49,8 +49,14 @@
                 android:value="com.ulgebra.luxscaradmin.AdminMainScreen" />
         </activity>
         <activity android:name=".BookingDetails"
-            android:parentActivityName=".AdminBookingHistory"></activity>
+            android:parentActivityName=".BookingHistory"></activity>
+        <activity android:name=".BookingHistory"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".Check_Cars"></activity>
+        <activity android:name=".SingleBookingDetails"
+            android:parentActivityName=".BookingHistory"></activity>
+        <activity android:name=".CancelBooking"
+            android:parentActivityName=".SingleBookingDetails"></activity>
 
     </application>
 

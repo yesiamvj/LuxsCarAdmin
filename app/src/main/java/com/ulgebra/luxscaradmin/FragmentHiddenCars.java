@@ -48,6 +48,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import static java.lang.Boolean.TRUE;
+
 public class FragmentHiddenCars extends Fragment {
 
     public ArrayList<Car_lists> parents;
@@ -55,6 +57,7 @@ public class FragmentHiddenCars extends Fragment {
     View rootView;
     ProgressDialog dialog;
     public DialogFragment Dialog;
+    LinearLayout linearLayout;
     TextView from_to_inp;
     private int ChildClickStatus=-1;
     String serverURL = "http://luxscar.com/luxscar_app/hidden_cars.php";
@@ -93,8 +96,8 @@ public class FragmentHiddenCars extends Fragment {
         }
 
 
+        linearLayout=(LinearLayout)rootView.findViewById(R.id.list_hold);
 
-        listView=(ListView)rootView.findViewById(R.id.list_hold);
 
         return rootView;
         // Use AsyncTask execute Method To Prevent ANR Problem
@@ -189,28 +192,7 @@ public class FragmentHiddenCars extends Fragment {
             return null;
         }
 
-        private void loadHosts(final ArrayList<Car_lists> newParents)
-        {
-            if (newParents == null){
-                Log.i("err", "returned");
-                return;
-            }else{
-                Log.i("err","ok");
-            }
 
-
-
-            parents = newParents;
-            Log.i("err","lv");
-            // Check for ExpandableListAdapter object
-
-            Log.i("err","fea");
-            final MyExpandableListAdapter mAdapter = new MyExpandableListAdapter();
-
-            // Set Adapter to ExpandableList Adapter
-            listView.setAdapter(mAdapter);
-
-        }
         protected void onPostExecute(Void unused) {
             // NOTE: You can call UI Element here.
 
@@ -351,6 +333,17 @@ public class FragmentHiddenCars extends Fragment {
             h.selc_car_inp.setId(my_parent.getCar_id());
 
 
+            h.s_car_cont.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent ints=new Intent(getActivity().getApplicationContext(),SingleCarDetail.class);
+                    ints.putExtra("car_id",my_parent.getCar_id());
+                    startActivity(ints);
+
+
+                }
+            });
 
             h.selc_car_inp.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -377,7 +370,7 @@ public class FragmentHiddenCars extends Fragment {
             });
 
             h.car_name_inp.setText(my_parent.getCar_name());
-            h.cost_inp.setText(my_parent.getCar_cost());
+            h.cost_inp.setText("RS "+my_parent.getCar_cost()+" / per day");
 
 
             new ImageLoadTask("http://luxscar.com/luxscar_app/"+my_parent.getCar_image(), h.car_image_inp).execute();
@@ -525,18 +518,12 @@ public class FragmentHiddenCars extends Fragment {
             dialog.dismiss();
 
 
-            if(otpt.hashCode()==("Successfully Registered").hashCode()){
+            if(otpt.hashCode()==0){
+                Toast.makeText(getActivity().getApplicationContext(),"Check your Internet Connection",Toast.LENGTH_LONG).show();
 
+            }else{
+                Toast.makeText(getActivity().getApplicationContext(),otpt,Toast.LENGTH_LONG).show();
 
-            }else {
-
-                if(otpt.hashCode()==0){
-                    Toast.makeText(getActivity().getApplicationContext(),"Check your Internet Connection",Toast.LENGTH_LONG).show();
-
-                }else{
-                    Toast.makeText(getActivity().getApplicationContext(),otpt,Toast.LENGTH_LONG).show();
-
-                }
             }
 
         }
@@ -544,4 +531,81 @@ public class FragmentHiddenCars extends Fragment {
     }
 
 
+    public void loadHosts(final ArrayList<Car_lists> newParents)
+    {
+        if (newParents == null){
+            Log.i("err", "returned");
+            return;
+        }else{
+            Log.i("err","ok");
+        }
+
+
+
+        parents = newParents;
+        Log.i("err","lv");
+        // Check for ExpandableListAdapter object
+
+        Log.i("err","fea");
+        // final MyExpandableListAdapter mAdapter = new MyExpandableListAdapter();
+
+        // Set Adapter to ExpandableList Adapter
+
+        for(int i=0;i<parents.size();i++){
+            final Car_lists my_parent = parents.get(i);
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.sigle_car_container,null);
+            TextView car_name=(TextView)view.findViewById(R.id.car_name);
+
+            TextView car_cost=(TextView)view.findViewById(R.id.car_cost);
+
+            Button selc_cars=(Button)view.findViewById(R.id.selc_car);
+
+            car_name.setText(my_parent.getCar_name());
+
+            car_cost.setText("RS. "+my_parent.getCar_cost()+" / per day");
+
+            selc_cars.setText("Show Car");
+            selc_cars.setBackgroundColor(Color.parseColor("#2980b9"));
+
+            LinearLayout car_holders=(LinearLayout)view.findViewById(R.id.sigle_car);
+            car_holders.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent ints=new Intent(getActivity().getApplicationContext(),SingleCarDetail.class);
+                    ints.putExtra("car_id",my_parent.getCar_id());
+                    startActivity(ints);
+
+
+                }
+            });
+            selc_cars.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+
+                    dialog = ProgressDialog.show(getActivity(), "Processing Please wait...", ""+v.getId(), true);
+                    String hide_url="http://luxscar.com/luxscar_app/hide_car.php?car_idsuiru="+my_parent.getCar_id()+"&hide_sets=2";
+                    new HideOperation().execute(hide_url);
+                    linearLayout.removeAllViews();
+                    new LongOperation().execute(serverURL);
+
+
+
+
+
+
+
+                }
+            });
+
+            ImageView imgs=(ImageView)view.findViewById(R.id.car_image);
+
+            new ImageLoadTask("http://luxscar.com/luxscar_app/"+my_parent.getCar_image(), imgs).execute();
+
+            linearLayout.addView(view);
+        }
+
+    }
 }

@@ -93,16 +93,16 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
     public void goToAdminBooking(View view){
-        Intent intent=new Intent(getApplicationContext(),AdminBookingHistory.class);
+        Intent intent=new Intent(getApplicationContext(),BookingHistory.class);
         startActivity(intent);
     }
 
     public void goToAdminBrowseCars(View view){
 
 
-        Intent intent=new Intent(getApplicationContext(),SingleCarDetail.class);
-        int carrid=11;
-        intent.putExtra("car_id",carrid);
+        Intent intent=new Intent(getApplicationContext(),Cars.class);
+
+
         startActivity(intent);
     }
     public void goToAdminSearchBooking(View view){

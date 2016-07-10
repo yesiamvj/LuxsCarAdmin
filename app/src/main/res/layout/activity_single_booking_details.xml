@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<android.support.constraint.ConstraintLayout tools:context=".SingleBookingDetails"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_booking_details"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView style="@style/mama">
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
+            <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
+                <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Booking Details" style="@style/topTitleText" />
+                <Button style="@style/topTitleShadow" />
+            </LinearLayout>
+            <LinearLayout style="@style/mpwc">
+                <TextView android:id="@+id/bookingHeaderDets" android:paddingLeft="18.0dip" android:paddingTop="5.0dip" android:paddingBottom="10.0dip" android:text="Booking ID : #XXX On xxx" style="@style/mpwc" />
+            </LinearLayout>
+            <LinearLayout style="@style/mpwcvw">
+                <LinearLayout style="@style/mpwcvw">
+                    <TextView android:text="Ride Date" style="@style/confirmBooking_QueText" />
+                    <TextView
+                        android:id="@+id/ride_dure"
+                        android:text="6.7.16 to 30.7.16" style="@style/confirmBooking_AnsText" />
+                    <TextView android:text="Booking Status" style="@style/confirmBooking_QueText" />
+                    <TextView
+                        android:id="@+id/ride_sts"
+
+                        android:text="Normal"
+                        style="@style/confirmBooking_AnsText"
+                        android:lineSpacingExtra="5dp"
+                        android:textSize="16dp"
+                        android:gravity="left"/>
+
+                    <TextView android:text="User Name" style="@style/confirmBooking_QueText" />
+                    <TextView
+                        android:id="@+id/ride_cusName"
+                        android:text="Name" style="@style/confirmBooking_AnsText" />
+
+                    <TextView android:text="Mobile No" style="@style/confirmBooking_QueText" />
+                    <TextView
+                        android:id="@+id/ride_cusMob"
+                        android:text="mobile number" style="@style/confirmBooking_AnsText" />
+
+                    <LinearLayout style="@style/mpwcvw">
+                        <TextView android:text="Car Reg.No" style="@style/confirmBooking_QueText" />
+                        <TextView
+                            android:id="@+id/ride_carNo"
+                            android:text="TN XXX" style="@style/confirmBooking_AnsText" />
+                    </LinearLayout>
+                    <TextView android:text="Vehicle" style="@style/confirmBooking_QueText" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/singleCar_container">
+                    <LinearLayout style="@style/mpwcvw">
+                        <TextView
+                            android:id="@+id/car_brand"
+                            android:text="Audi VB Tuning" style="@style/browse_car_name" />
+                        <TextView
+                            android:id="@+id/car_cost"
+                            android:text="Rs.1000 / day" style="@style/browse_car_price" />
+                        <ImageView
+                            android:id="@+id/car_image_inps"
+                            style="@style/browse_car_image" />
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView
+
+                    android:text="Total Cost" style="@style/confirmBooking_QueText" />
+                <TextView
+                    android:id="@+id/tot_cost"
+                    android:text="Rs.24,0000" style="@style/confirmBooking_AnsText" />
+                <TextView
+
+                    android:layout_marginTop="-5.0dip" android:text="Advance amount Paid" style="@style/confirmBooking_QueText" />
+                <TextView
+                    android:id="@+id/adv_amount"
+                    android:text="Rs.6,0000" style="@style/confirmBooking_AnsText" />
+                <TextView
+                    android:gravity="end" android:layout_marginRight="15.0dip" android:layout_marginBottom="5.0dip" android:text="* 25% of Total Amount as advance" style="@style/mpwc" />
+                <Button
+                    android:id="@+id/cancel_booking"
+                    android:background="#880202"
+                    android:text="Cancel Booking" style="@style/carDetilEndBtn" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

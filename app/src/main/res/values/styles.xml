@@ -74,8 +74,9 @@
     </style>
 
     <style name="browse_car_image">
-        <item name="android:layout_width">fill_parent</item>
-        <item name="android:layout_height">275.0dip</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">275dp</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="browse_car_name">

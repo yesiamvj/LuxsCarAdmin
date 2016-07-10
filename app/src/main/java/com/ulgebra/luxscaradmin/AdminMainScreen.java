@@ -13,7 +13,7 @@ public class AdminMainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main_screen);
     }
     public void goToAdminBooking(View view){
-        Intent intent=new Intent(getApplicationContext(),AdminBookingHistory.class);
+        Intent intent=new Intent(getApplicationContext(),BookingHistory.class);
         startActivity(intent);
     }
 

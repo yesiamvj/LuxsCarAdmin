@@ -16,12 +16,13 @@
                 <TextView android:paddingLeft="18.0dip" android:paddingTop="10.0dip" android:text="Select a Car from the List to View" style="@style/mpwc" />
             </LinearLayout>
 
-            <ListView
+            <LinearLayout
+                android:orientation="vertical"
                 android:id="@+id/list_hold"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </ListView>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

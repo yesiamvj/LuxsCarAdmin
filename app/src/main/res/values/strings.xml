@@ -7,7 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_single_car_detail">SingleCarDetail</string>
     <string-array name="cancel_reasons">
-        <item>Accidentally Booked</item>
+        <item>Cancelled By Admin</item>
         <item>Have another Car</item>
         <item>Cancelled Trip</item>
         <item>Other</item>

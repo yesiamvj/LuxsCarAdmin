@@ -10,4 +10,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
         style="@style/browse_car_image"
         xmlns:android="http://schemas.android.com/apk/res/android" />
+
+
+
     </LinearLayout>

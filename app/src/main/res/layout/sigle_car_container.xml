@@ -23,5 +23,7 @@
     <Button
         android:id="@+id/selc_car"
 
-        android:text="Select Car" android:onClick="goToConfirmBooking" style="@style/browse_car_selectBtn" />
+        android:text="Select Car" android:onClick="goToConfirmBooking" style="@style/browse_car_selectBtn"
+
+        />
 </LinearLayout>
