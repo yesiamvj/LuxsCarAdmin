@@ -20,6 +20,7 @@ public class Car_lists {
     private String bookingStatus;
     private String cancelledOn;
     private String cancelReason;
+    private String editedOn;
 
 
     public void setBooked_on(String booked_on) {
@@ -113,5 +114,13 @@ public class Car_lists {
 
     public String getCancelReason() {
         return cancelReason;
+    }
+
+    public void setEditedOn(String editedOn) {
+        this.editedOn = editedOn;
+    }
+
+    public String getEditedOn() {
+        return editedOn;
     }
 }

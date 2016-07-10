@@ -57,7 +57,7 @@ public class BookingHistory extends AppCompatActivity {
     TextView from_to_inp;
     LongOperation longOperation=new LongOperation();
     private int ChildClickStatus=-1;
-    String bookingStatus,cancelReason,cancelledOn;
+    String bookingStatus,cancelReason,cancelledOn,editedOn;
 
     LinearLayout linearLayout;
 
@@ -234,6 +234,8 @@ public class BookingHistory extends AppCompatActivity {
                     bookingStatus=jsonChildNode.optString("booking_status").toString();
                     cancelledOn=jsonChildNode.optString("cancelled_on").toString();
                     cancelReason=jsonChildNode.optString("booking_cancel_reason").toString();
+                    editedOn=jsonChildNode.optString("edited_on").toString();
+
 
                     mp.set_carname(name);
                     mp.setRide_dure(ride);
@@ -244,6 +246,7 @@ public class BookingHistory extends AppCompatActivity {
                     mp.setBookingStatus(bookingStatus);
                     mp.setCancelledOn(cancelledOn);
                     mp.setCancelReason(cancelReason);
+                    mp.setEditedOn(editedOn);
                     lists.add(mp);
                 }
                 Log.i("net_err", "out for json");
@@ -318,6 +321,15 @@ public class BookingHistory extends AppCompatActivity {
                 supSHa.setBackgroundColor(Color.parseColor("#c0392b"));
                 bk_car_bookDate.setText("Booked On "+my_parent.getBooked_on()+"\n Cancelled On "+my_parent.getCancelledOn()+" Reason" +
                         ": "+my_parent.getCancelReason());
+
+
+            }
+            if(my_parent.getBookingStatus().contains("5")){
+                Log.v("bookingsts aa",bookingStatus+""+my_parent.getBooking_id());
+                bk_no_inp.setText("Edited Booking No "+my_parent.getBooking_id());
+                bk_no_inp.setBackgroundColor(Color.parseColor("#16a085"));
+                supSHa.setBackgroundColor(Color.parseColor("#16a085"));
+                bk_car_bookDate.setText("Booked On "+my_parent.getBooked_on()+"\n Edited On "+my_parent.getEditedOn()+"");
 
 
             }

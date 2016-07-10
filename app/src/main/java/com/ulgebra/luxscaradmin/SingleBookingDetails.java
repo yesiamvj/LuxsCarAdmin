@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class SingleBookingDetails extends AppCompatActivity {
 
 
-    String booking_sts,cancelled_on,cancel_reason,booking_username,booking_userMob,booking_iddd,car_image,cars_name,car_number,ride_form,ride_to,ride_advance,booked_on,ride_total_cost,car_reg_no;
+    String edited_details,booking_sts,cancelled_on,cancel_reason,booking_username,booking_userMob,booking_iddd,car_image,cars_name,car_number,ride_form,ride_to,ride_advance,booked_on,ride_total_cost,car_reg_no;
 
     int car_id,cost,total_cost;
     double adv_amt;
@@ -220,6 +220,7 @@ public class SingleBookingDetails extends AppCompatActivity {
                         booking_sts=jsonChildNode.optString("booking_status").toString();
                         cancel_reason=jsonChildNode.optString("booking_cancel_reason").toString();
                         cancelled_on=jsonChildNode.optString("cancelled_on").toString();
+                        edited_details=jsonChildNode.optString("editings").toString();
                         car_id=jsonChildNode.optInt("car_id");
 
                         car_image=jsonChildNode.optString("car_image").toString();
@@ -293,6 +294,11 @@ public class SingleBookingDetails extends AppCompatActivity {
                 ride_sts.setText("Booked On "+booked_on+"\n"+"Cancelled On "+cancelled_on+" \n Reason : "+cancel_reason);
                 bookingHeaderDets.setText("CANCELLED Booking ID : #"+booking_iddd);
                 bookingHeaderDets.setTextColor(Color.parseColor("#c0392b"));
+            }
+            if(booking_sts.contains("5")){
+                ride_sts.setText("Booked On "+booked_on+"\n"+"Edited On "+cancelled_on+" \nDetails : "+edited_details);
+                bookingHeaderDets.setText("EDITED Booking ID : #"+booking_iddd);
+                bookingHeaderDets.setTextColor(Color.parseColor("#16a085"));
             }
             else {
                 ride_sts.setText("Normal");
