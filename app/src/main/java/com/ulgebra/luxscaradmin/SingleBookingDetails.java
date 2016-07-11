@@ -207,7 +207,7 @@ public class SingleBookingDetails extends AppCompatActivity {
 
                          ride_form=jsonChildNode.optString("ride_from").toString();
                          ride_to=jsonChildNode.optString("ride_to").toString();
-                         ride_advance=jsonChildNode.optString("ride_advance").toString();
+                         ride_advance=jsonChildNode.optString("paid_cost").toString();
                          booked_on=jsonChildNode.optString("booked_on").toString();
                         booking_iddd=jsonChildNode.optString("booking_id").toString();
                         ride_total_cost=jsonChildNode.optString("ride_price").toString();

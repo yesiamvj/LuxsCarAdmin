@@ -76,8 +76,6 @@
                 <TextView
                     android:id="@+id/adv_amount"
                     android:text="Rs.6,0000" style="@style/confirmBooking_AnsText" />
-                <TextView
-                    android:gravity="end" android:layout_marginRight="15.0dip" android:layout_marginBottom="5.0dip" android:text="* 25% of Total Amount as advance" style="@style/mpwc" />
                 <Button
                     android:id="@+id/cancel_booking"
                     android:background="#880202"
