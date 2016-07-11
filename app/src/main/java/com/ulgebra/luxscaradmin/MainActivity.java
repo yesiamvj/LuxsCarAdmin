@@ -1,6 +1,7 @@
 package com.ulgebra.luxscaradmin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,6 +23,18 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences myPrefs = this.getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
+        String user_idd = myPrefs.getString("MEM1","");
+
+        if(user_idd.length()>1){
+
+        }
+        else {
+
+            Intent intent=new Intent(this,Login_user.class);
+            finish();
+            startActivity(intent);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -34,6 +48,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+       //String user_id = sharedPref.getString(getString(R.string.user_id),null);
+
+
     }
 
     @Override
@@ -62,7 +80,16 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            SharedPreferences myPrefs = getSharedPreferences("myPrefs", MODE_WORLD_READABLE);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            editor.remove("MEM1");
+
+            editor.commit();
+
+            Intent intentq=new Intent(getApplicationContext(),Login_user.class);
+            intentq.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            finish();
+            startActivity(intentq);
         }
 
         return super.onOptionsItemSelected(item);

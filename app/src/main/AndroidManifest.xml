@@ -57,6 +57,7 @@
             android:parentActivityName=".BookingHistory"></activity>
         <activity android:name=".CancelBooking"
             android:parentActivityName=".SingleBookingDetails"></activity>
+        <activity android:name=".Login_user"></activity>
 
     </application>
 
