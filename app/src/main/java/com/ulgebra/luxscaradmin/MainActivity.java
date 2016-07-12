@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
     public void goToAdminBooking(View view){
-        Intent intent=new Intent(getApplicationContext(),BookingHistory.class);
+        Intent intent=new Intent(getApplicationContext(),BookingViewType.class);
         startActivity(intent);
     }
 
@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity
     }
     public void goToAdminAddNewCar(View view){
         Intent intent=new Intent(getApplicationContext(),AddNewCar.class);
+        startActivity(intent);
+    }
+    public void goToUserList(View view){
+        Intent intent=new Intent(getApplicationContext(),AllUsers.class);
         startActivity(intent);
     }
 

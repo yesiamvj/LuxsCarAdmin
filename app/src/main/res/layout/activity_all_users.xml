@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8' ?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/activity_booking_history" android:layout_width="fill_parent" android:layout_height="fill_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/activity_user_history" android:layout_width="fill_parent" android:layout_height="fill_parent">
 
     <ScrollView style="@style/mama">
         <LinearLayout
@@ -8,8 +8,7 @@
             android:layout_height="wrap_content">
             <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
                 <TextView
-                    android:id="@+id/bookHisTtl"
-                    android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Booking Timeline" style="@style/topTitleText" />
+                    android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Users" style="@style/topTitleText" />
                 <Button style="@style/topTitleShadow" android:layout_marginBottom="2dp" />
             </LinearLayout>
             <LinearLayout
@@ -20,7 +19,7 @@
 
 
                 <TextView android:id="@+id/bk_editd"
-                    android:text="Click to View or Edit a Booking "
+                    android:text="Click to View User's Detail "
                     style="@style/bookingHistory_edit"
                     android:layout_marginBottom="5dp"/>
 

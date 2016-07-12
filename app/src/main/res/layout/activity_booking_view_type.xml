@@ -2,16 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_main"
+    android:id="@+id/activity_booking_view_type"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ulgebra.luxscaradmin.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-
+    tools:context="com.ulgebra.luxscaradmin.BookingViewType">
     <ScrollView style="@style/mama">
         <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
-            <LinearLayout android:orientation="vertical" android:layout_marginTop="55.0dip" style="@style/topTitleBar">
-                <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Admin" style="@style/topTitleText" />
+            <LinearLayout android:orientation="vertical" android:layout_marginTop="0dp" style="@style/topTitleBar">
+                <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="View Bookings" style="@style/topTitleText" />
                 <Button style="@style/topTitleShadow" />
             </LinearLayout>
             <LinearLayout style="@style/mpwc">
@@ -45,7 +43,7 @@
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Bookings"
+                            android:text="ALL BOOKINGS"
                             android:background="#ffffff"
                             android:layout_marginBottom="5dp"/>
                     </LinearLayout>
@@ -57,24 +55,24 @@
                         android:orientation="vertical"
                         android:layout_marginRight="0dp"
                         android:layout_marginLeft="5dp"
-                        android:onClick="goToUserList"
+                        android:onClick="goTodayBookings"
                         >
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="125dp"
-                            android:src="@drawable/users_icon"
-                            android:background="#33691e"
+                            android:src="@drawable/ic_menu_slideshow"
+                            android:background="#ffffff"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingTop="40dp"
+                            android:paddingBottom="15dp"
+                            android:paddingTop="30dp"
                             />
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="USERS"
-                            android:background="#33691e"
-                            android:textColor="#ffffff"
+                            android:text="TODAY"
+                            android:background="#ffffff"
+                            android:textColor="#00880b"
                             android:layout_marginBottom="5dp"/>
                     </LinearLayout>
 
@@ -82,46 +80,21 @@
                 </LinearLayout>
                 <LinearLayout style="@style/mpwc" android:weightSum="2" android:layout_marginBottom="7dp">
 
+
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="2"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginRight="5dp"
                         android:layout_marginLeft="0dp"
-                        android:onClick="goToAdminBrowseCars"
-                        >
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="125dp"
-                            android:src="@drawable/admincaricon"
-                            android:background="#29b6f6"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="0dp"
-                            android:paddingTop="35dp"
-                            />
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="CARS"
-                            android:background="#29b6f6"
-                            android:textColor="#ffffff"
-                            android:layout_marginBottom="5dp"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="5dp"
-                        android:onClick="goToAdminSearchBooking"
+
+                        android:onClick="showDatePickerDialog"
                         >
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="125dp"
                             android:src="@drawable/adminsearchicon"
-                            android:background="#ff9800"
+                            android:background="#ffffff"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="15dp"
@@ -131,51 +104,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Search"
-                            android:background="#ff9800"
-                            android:textColor="#ffffff"
+                            android:background="#ffffff"
+                            android:textColor="#ffa000"
                             android:layout_marginBottom="5dp"/>
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout style="@style/mpwc" android:weightSum="2" android:layout_marginBottom="10dp">
-
-
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginRight="5dp"
-                        android:onClick="goToAdminAddNewCar"
-
-                        >
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="125dp"
-                            android:src="@drawable/adminaddcar"
-                            android:background="#00796b"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:paddingBottom="15dp"
-                            android:paddingTop="40dp"
-                            />
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Add Car"
-                            android:background="#00796b"
-                            android:textColor="#ffffff"
-                            android:layout_marginBottom="5dp"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </android.support.constraint.ConstraintLayout>

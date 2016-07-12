@@ -3,12 +3,14 @@
     package="com.ulgebra.luxscaradmin">
 
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -28,17 +30,19 @@
         <activity
             android:name=".SingleCarDetail"
             android:label="@string/title_activity_single_car_detail"
-            android:parentActivityName=".Cars"
-             />
+            android:parentActivityName=".Cars" />
         <activity android:name=".AdminShownCars" />
         <activity android:name=".AdminHiddenCars" />
-        <activity android:name=".AdminBookingHistory"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AdminBookingHistory"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".AdminMainScreen" />
-        <activity android:name=".SearchBooking"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".AddNewCar"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".SearchBooking"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddNewCar"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".Cars"
             android:label="@string/title_activity_cars"
@@ -48,17 +52,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ulgebra.luxscaradmin.AdminMainScreen" />
         </activity>
-        <activity android:name=".BookingDetails"
-            android:parentActivityName=".BookingHistory"></activity>
-        <activity android:name=".BookingHistory"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".Check_Cars"></activity>
-        <activity android:name=".SingleBookingDetails"
-            android:parentActivityName=".BookingHistory"></activity>
-        <activity android:name=".CancelBooking"
-            android:parentActivityName=".SingleBookingDetails"></activity>
-        <activity android:name=".Login_user"></activity>
-
+        <activity
+            android:name=".BookingDetails"
+            android:parentActivityName=".BookingHistory" />
+        <activity
+            android:name=".BookingHistory"
+            android:parentActivityName=".BookingViewType" />
+        <activity android:name=".Check_Cars" />
+        <activity
+            android:name=".SingleBookingDetails"
+            android:parentActivityName=".BookingHistory" />
+        <activity
+            android:name=".CancelBooking"
+            android:parentActivityName=".SingleBookingDetails" />
+        <activity android:name=".Login_user" />
+        <activity
+            android:name=".AllUsers"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SingleUserDetails"
+            android:parentActivityName=".AllUsers" />
+        <activity
+            android:name=".ShowThisCarBookingHistory"
+            android:parentActivityName=".Cars" />
+        <activity android:name=".BookingViewType"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".ThisDateHistory"
+            android:parentActivityName=".BookingViewType"></activity>
     </application>
 
 </manifest>

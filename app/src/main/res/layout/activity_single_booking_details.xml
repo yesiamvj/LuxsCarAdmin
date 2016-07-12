@@ -9,7 +9,7 @@
     <ScrollView style="@style/mama">
         <LinearLayout android:orientation="vertical" android:paddingBottom="10.0dip" style="@style/mpwc">
             <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
-                <TextView android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Booking Details" style="@style/topTitleText" />
+                <TextView android:id="@+id/bookHisTtl" android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Booking Details" style="@style/topTitleText" />
                 <Button style="@style/topTitleShadow" />
             </LinearLayout>
             <LinearLayout style="@style/mpwc">
