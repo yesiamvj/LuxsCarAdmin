@@ -317,8 +317,13 @@ public class SingleBookingDetails extends AppCompatActivity {
             car_cost.setText("Rs. "+cost+" / per day");
 
 
+            if(car_image.equals("null")){
 
-            new ImageLoadTask("http://luxscar.com/luxscar_app/"+car_image, car_image_inp).execute();
+            }
+            else {
+                new ImageLoadTask("http://luxscar.com/luxscar_app/"+car_image, car_image_inp).execute();
+
+            }
 
 
 
