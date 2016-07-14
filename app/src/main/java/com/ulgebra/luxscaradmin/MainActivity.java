@@ -144,5 +144,13 @@ public class MainActivity extends AppCompatActivity
         Intent intent=new Intent(getApplicationContext(),AllUsers.class);
         startActivity(intent);
     }
+    public void goToAdminAddOffer(View view){
+        Intent intent=new Intent(getApplicationContext(),AddOffer.class);
+        startActivity(intent);
+    }
+    public void goToAdminAllOffer(View view){
+        Intent intent=new Intent(getApplicationContext(),AllOffers.class);
+        startActivity(intent);
+    }
 
 }

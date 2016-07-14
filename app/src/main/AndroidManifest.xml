@@ -75,10 +75,18 @@
         <activity
             android:name=".ShowThisCarBookingHistory"
             android:parentActivityName=".Cars" />
-        <activity android:name=".BookingViewType"
+        <activity
+            android:name=".BookingViewType"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ThisDateHistory"
+            android:parentActivityName=".BookingViewType" />
+        <activity android:name=".AddOffer"
             android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ThisDateHistory"
-            android:parentActivityName=".BookingViewType"></activity>
+        <activity android:name=".AllOffers"
+            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".SingleOfferDetails"
+            android:parentActivityName=".AllOffers"></activity>
     </application>
 
 </manifest>

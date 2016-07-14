@@ -1,5 +1,6 @@
 package com.ulgebra.luxscaradmin;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,15 +29,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class SingleBookingDetails extends AppCompatActivity {
+public class SingleOfferDetails extends AppCompatActivity {
 
 
-    String edited_details,ride_discount,booking_sts,cancelled_on,cancel_reason,booking_username,booking_userMob,booking_iddd,car_image,cars_name,car_number,ride_form,ride_to,ride_advance,booked_on,ride_total_cost,car_reg_no;
-
-    int car_id,cost,total_cost;
+    String minPurAmt,maxDisAmt,disPercent,disPrice,expiryDate,addedOn,coupon_code;
+    int offer_id;
     double adv_amt;
+    public ProgressDialog dialog;
 
-    public ArrayList<Car_lists> parents;
+    public ArrayList<Offers> parents;
 
     public ProgressDialog Dialog ;
     @Override
@@ -45,20 +46,32 @@ public class SingleBookingDetails extends AppCompatActivity {
         Intent intentzc = getIntent();
 
 
-        String booking_idd= intentzc.getStringExtra("booking_idd").substring(1);
+        final String booking_idd= intentzc.getStringExtra("user_idd");
 
-        setContentView(R.layout.activity_single_booking_details);
+        setContentView(R.layout.activity_single_offer_details);
 
-        Dialog= new ProgressDialog(SingleBookingDetails.this);
+        Log.v("offer_id",booking_idd);
+
+        Dialog= new ProgressDialog(SingleOfferDetails.this);
         Dialog.setMessage("please wait");
         Dialog.show();
 
+        Button del_btn_inp=(Button)findViewById(R.id.delt_btn);
+        del_btn_inp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String dlt_url="http://luxscar.com/luxscar_app/deleteOfferIo.php?car_idsss="+booking_idd+"offer_id=hdkjn";
+
+                DeltOperation deltOperation= new DeltOperation();
+                deltOperation.execute(dlt_url);
+            }
+        });
 
 
         Log.v("booking_id_sent",booking_idd+"");
-        String otp_nums = "http://luxscar.com/luxscar_app/SingleBookingDetails.php?booking_id="+booking_idd+"";
-
+        String otp_nums = "http://luxscar.com/luxscar_app/SingleOfferDetails.php?offer_id="+booking_idd+"";
+        Log.v("booking_id_sent",otp_nums+"");
 
         final String otp_url = otp_nums;
         new LongOperation().execute(otp_url);
@@ -145,16 +158,17 @@ public class SingleBookingDetails extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             // NOTE: You can call UI Element here.
 
+            Log.v("net_res","enter");
             Dialog.dismiss();
 
 
 
             if (Error != null) {
 
-
+                Log.v("net_res",Error);
 
             } else {
-
+                Log.v("net_res","enter ok");
                 // Toast.makeText(getApplicationContext(),Content,Toast.LENGTH_LONG).show();
 
                 // Show Response Json On Screen (activity)
@@ -169,22 +183,23 @@ public class SingleBookingDetails extends AppCompatActivity {
 
                 try {
 
+                    Log.v("net_res","enter okl");
+
                     /****** Creates a new JSONObject with name/value mappings from the JSON string. ********/
                     jsonResponse = new JSONObject(Content);
 
                     /***** Returns the value mapped by name if it exists and is a JSONArray. ***/
                     /*******  Returns null otherwise.  *******/
 
-                    jsonMainNode1=jsonResponse.optJSONArray("Car_images");
 
-                  //  int car_img_len=jsonMainNode1.length();
-
+                    //  int car_img_len=jsonMainNode1.length();
 
 
 
 
 
 
+                    Log.v("net_res","enter okll");
 
                     jsonMainNode = jsonResponse.optJSONArray("Car_items");
 
@@ -205,30 +220,19 @@ public class SingleBookingDetails extends AppCompatActivity {
                         /******* Fetch node values **********/
 
 
-                         ride_form=jsonChildNode.optString("ride_from").toString();
-                         ride_to=jsonChildNode.optString("ride_to").toString();
-                         ride_advance=jsonChildNode.optString("paid_cost").toString();
-                         booked_on=jsonChildNode.optString("booked_on").toString();
-                        booking_iddd=jsonChildNode.optString("booking_id").toString();
-                        ride_total_cost=jsonChildNode.optString("ride_price").toString();
-                        cars_name       = jsonChildNode.optString("car_name").toString();;
-                        cost     = jsonChildNode.optInt("cost");
-                        ride_discount=jsonChildNode.optString("ride_discount").toString();
+                        offer_id=jsonChildNode.optInt("offer_id");
+                        coupon_code=jsonChildNode.optString("coupon_code").toString();
+                        minPurAmt=jsonChildNode.optString("minPurAmt").toString();
+                        maxDisAmt=jsonChildNode.optString("maxDisAmt").toString();
+                        disPercent=jsonChildNode.optString("disPercent").toString();
 
-                        car_reg_no=jsonChildNode.optString("car_no").toString();
-                        car_number = jsonChildNode.optString("car_no").toString();
-                        booking_username=jsonChildNode.optString("booked_username").toString();
-                        booking_userMob=jsonChildNode.optString("booking_user_mobile").toString();
-                        booking_sts=jsonChildNode.optString("booking_status").toString();
-                        cancel_reason=jsonChildNode.optString("booking_cancel_reason").toString();
-                        cancelled_on=jsonChildNode.optString("cancelled_on").toString();
-                        edited_details=jsonChildNode.optString("editings").toString();
-                        car_id=jsonChildNode.optInt("car_id");
-
-                        car_image=jsonChildNode.optString("car_image").toString();
+                        expiryDate=jsonChildNode.optString("expiryDate").toString();
+                        addedOn=jsonChildNode.optString("addedOn").toString();
 
 
-                        Log.i("net_err","tot_cnt="+ride_form);
+
+
+
                     }
 
                     loadHosts(lists);
@@ -260,75 +264,24 @@ public class SingleBookingDetails extends AppCompatActivity {
 
 
 
-      //  Log.v("car_name",car_image);
+        //  Log.v("car_name",car_image);
 
 
         for(int i=0;i<1;i++){
-            TextView from_to_inp=(TextView)findViewById(R.id.ride_dure);
-            TextView car_name_inp=(TextView)findViewById(R.id.car_brand);
-            TextView car_cost=(TextView)findViewById(R.id.car_cost);
-            TextView car_regNo=(TextView)findViewById(R.id.ride_carNo);
-            TextView bookingHeaderDets=(TextView)findViewById(R.id.bookingHeaderDets);
-            TextView booking_user_name=(TextView)findViewById(R.id.ride_cusName);
-            TextView booking_user_mobile=(TextView)findViewById(R.id.ride_cusMob);
-            TextView ride_sts=(TextView)findViewById(R.id.ride_sts);
-            ImageView car_image_inp=(ImageView)findViewById(R.id.car_image_inps);
-            Button cancel_bookBtn=(Button)findViewById(R.id.cancel_booking);
-            final TextView adv_amont=(TextView)findViewById(R.id.adv_amount);
-            final TextView tot_cost=(TextView)findViewById(R.id.tot_cost);
-            TextView rideDisc=(TextView)findViewById(R.id.rideDiscTxt);
-
-
-
-            cancel_bookBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                  Intent intentcn=new Intent(getApplicationContext(),CancelBooking.class);
-                    intentcn.putExtra("booking_idd",booking_iddd);
-                    startActivity(intentcn);
-
-
-                }
-            });
-
-            if(booking_sts.contains("9")){
-                ride_sts.setText("Booked On "+booked_on+"\n"+"Cancelled On "+cancelled_on+" \n Reason : "+cancel_reason);
-                bookingHeaderDets.setText("CANCELLED Booking ID : #"+booking_iddd);
-                bookingHeaderDets.setTextColor(Color.parseColor("#c0392b"));
-            }
-            if(booking_sts.contains("5")){
-                ride_sts.setText("Booked On "+booked_on+"\n"+"Edited On "+cancelled_on+" \nDetails : "+edited_details);
-                bookingHeaderDets.setText("EDITED Booking ID : #"+booking_iddd);
-                bookingHeaderDets.setTextColor(Color.parseColor("#16a085"));
-            }
-            else {
-                ride_sts.setText("Normal");
-                bookingHeaderDets.setText("Booking ID : #"+booking_iddd+" On "+booked_on+"");
-            }
-
-
-            from_to_inp.setText("From "+ride_form+" to "+ride_to+"");
-            booking_user_mobile.setText(booking_userMob);
-            booking_user_name.setText(booking_username);
-            car_name_inp.setText(cars_name);
-            car_regNo.setText(car_reg_no);
-             tot_cost.setText("Rs. "+ride_total_cost);
-
-            adv_amont.setText("Rs "+ride_advance);
-            car_cost.setText("Rs. "+cost+" / per day");
-            rideDisc.setText("Rs. "+ride_discount+" from Total Cost");
-
-
-            if(car_image.equals("null")){
-
-            }
-            else {
-                new ImageLoadTask("http://luxscar.com/luxscar_app/"+car_image, car_image_inp).execute();
-
-            }
-
+            TextView userNameTxt=(TextView)findViewById(R.id.ride_username);
+            TextView usermobTxt=(TextView)findViewById(R.id.usermob);
+            TextView usermail=(TextView)findViewById(R.id.usermail);
+            TextView userlic=(TextView)findViewById(R.id.userlic);
+            TextView ride_totBook=(TextView)findViewById(R.id.ride_totBook);
+            TextView ride_regDate=(TextView)findViewById(R.id.ride_regDate);
+            TextView ride_userId=(TextView)findViewById(R.id.bookingHeaderDets);
+            userNameTxt.setText(coupon_code);
+            usermobTxt.setText("Rs."+minPurAmt);
+            usermail.setText("Rs."+maxDisAmt);
+            userlic.setText(disPercent);
+            ride_totBook.setText(expiryDate);
+            ride_regDate.setText(addedOn);
+            ride_userId.setText("Offer ID #"+offer_id);
 
 
         }
@@ -336,40 +289,6 @@ public class SingleBookingDetails extends AppCompatActivity {
 
     }
 
-    public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
-
-        private String url;
-        private ImageView imageView;
-
-        public ImageLoadTask(String url, ImageView imageView) {
-            this.url = url;
-            this.imageView = imageView;
-        }
-
-        @Override
-        protected Bitmap doInBackground(Void... params) {
-            try {
-                URL urlConnection = new URL(url);
-                HttpURLConnection connection = (HttpURLConnection) urlConnection
-                        .openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                return myBitmap;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap result) {
-            super.onPostExecute(result);
-            imageView.setImageBitmap(result);
-        }
-
-    }
 
 
 
@@ -380,7 +299,7 @@ public class SingleBookingDetails extends AppCompatActivity {
         // private final HttpClient Client = new DefaultHttpClient();
         private String Content;
         private String Error = null;
-        private ProgressDialog Dialog = new ProgressDialog(SingleBookingDetails.this);
+        private ProgressDialog Dialog = new ProgressDialog(SingleOfferDetails.this);
         String data ="";
         String otpt="";
 
@@ -476,7 +395,6 @@ public class SingleBookingDetails extends AppCompatActivity {
             }else{
 
 
-                finish();
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(),otpt,Toast.LENGTH_LONG).show();
@@ -502,6 +420,124 @@ public class SingleBookingDetails extends AppCompatActivity {
 
 
             }
+        }
+
+    }
+    public class DeltOperation  extends AsyncTask<String, Void, Void> {
+
+        // Required initialization
+
+        // private final HttpClient Client = new DefaultHttpClient();
+        private String Content;
+        private String Error = null;
+        String data ="";
+        String otpt="";
+
+
+
+        protected void onPreExecute() {
+            // NOTE: You can call UI Element here.
+
+            //Start Progress Dialog (Message)
+            dialog = new ProgressDialog(SingleOfferDetails.this);
+            dialog.setMessage("Please wait...");
+            dialog.show();
+
+
+
+        }
+
+        // Call after onPreExecute method
+        protected Void doInBackground(String... urls) {
+
+            /************ Make Post Call To Web Server ***********/
+            BufferedReader reader=null;
+
+            // Send data
+            try
+            {
+                // Defined URL  where to send data
+                URL url = new URL(urls[0]);
+
+                // Send POST data request
+
+                URLConnection conn = url.openConnection();
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+                wr.write( "" );
+                wr.flush();
+                // Get the server response
+                try{
+                    reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    // StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        // Append server response in string
+                        // sb.append(line + "\n");
+                        otpt+=line;
+
+                    }
+
+                    // Append Server Response To Content String
+                    Content = otpt;
+                    Log.i("my_err","output="+otpt);
+                }catch (Exception e){
+
+                }
+
+
+
+            }
+            catch(Exception ex)
+            {
+                Error = ex.getMessage();
+            }
+            finally
+            {
+                try
+                {
+
+                    reader.close();
+                }
+
+                catch(Exception ex) {}
+            }
+
+            /*****************************************************/
+            return null;
+        }
+
+
+        protected void onPostExecute(Void unused) {
+            // NOTE: You can call UI Element here.
+
+            // Close progress dialog
+            dialog.dismiss();
+
+
+            if(otpt.hashCode()==("Successfully Registered").hashCode()){
+
+
+            }else {
+
+                if(otpt.hashCode()==0){
+                    Toast.makeText(getApplicationContext(),"Check your Internet Connection",Toast.LENGTH_LONG).show();
+
+                }else{
+
+                    Intent intent=new Intent(getApplicationContext(),AllOffers.class);
+                    finish();
+                    startActivity(intent);
+
+                    Toast.makeText(getApplicationContext(),otpt,Toast.LENGTH_LONG).show();
+
+                }
+            }
+
         }
 
     }

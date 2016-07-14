@@ -76,6 +76,14 @@
                 <TextView
                     android:id="@+id/adv_amount"
                     android:text="Rs.6,0000" style="@style/confirmBooking_AnsText" />
+                <TextView
+
+                    android:layout_marginTop="-5.0dip" android:text="Discount Amount" style="@style/confirmBooking_QueText" />
+                <TextView
+                    android:id="@+id/rideDiscTxt"
+                    android:text="Rs.6,0000" style="@style/confirmBooking_AnsText" />
+
+
                 <Button
                     android:id="@+id/cancel_booking"
                     android:background="#880202"

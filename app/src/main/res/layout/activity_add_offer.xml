@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_new_car"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ulgebra.luxscaradmin.AddOffer">
+    <ScrollView style="@style/mama">
+        <LinearLayout style="@style/mpwc"
+            android:orientation="vertical">
+            <LinearLayout style="@style/topTitleBar"
+                android:layout_marginTop="0dp">
+
+                <TextView
+                    style="@style/topTitleText"
+                    android:text="Add a new Offer"
+                    />
+                <Button style="@style/topTitleShadow" />
+
+            </LinearLayout>
+            <LinearLayout style="@style/mpwc"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+
+                >
+
+                <TextView
+                    style="@style/mpwc"
+                    android:text="Offer Details"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="18dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:background="#ffffff"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/mpwc"
+                android:orientation="vertical"
+                android:paddingTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="#ffffff"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:paddingBottom="15dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/couponCode"
+                        android:hint="Coupon Code"
+                        android:paddingLeft="10dp"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/minPurAmt"
+                        android:hint="Minimum purchase amount"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/maxDisc"
+                        android:hint="Maximum discount"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/discPerc"
+                        android:hint="Percentage of Discount"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView style="@style/mpwc"
+                    android:text="Or"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorAccent"
+                    android:gravity="center"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/discPrice"
+                        android:hint="Discount Price"
+                        android:paddingLeft="10dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    style="@style/mpwc"
+                    android:text="Expiry Date"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="18dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:background="#ffffff"/>
+
+                <DatePicker
+                    android:id="@+id/expDatee"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:calendarViewShown="false"
+                    android:calendarTextColor="@color/colorPrimaryDark"
+                    android:clipToPadding="true"
+
+                    android:datePickerMode="spinner"></DatePicker>
+
+
+
+
+
+                <Button
+                    android:id="@+id/upload_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit"
+                    android:layout_marginBottom="10dp"
+                    android:background="#FF00ACC1"
+                    android:textColor="#ffffff"
+                    android:textSize="17dp"
+                    android:layout_marginTop="20dp"
+                    android:onClick="goToOTP"
+
+                    />
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
