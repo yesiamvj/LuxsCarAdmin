@@ -183,7 +183,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="125dp"
                             android:src="@drawable/gift_outline"
-                            android:background="@color/colorPrimary"
+                            android:background="#ffffff"
                             android:paddingLeft="20dp"
                             android:paddingRight="20dp"
                             android:paddingBottom="15dp"
@@ -193,8 +193,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="ADD OFFER"
-                            android:background="@color/colorPrimary"
-                            android:textColor="#ffffff"
+                            android:background="#ffffff"
+                            android:textColor="@color/colorAccent"
                             android:layout_marginBottom="5dp"/>
                     </LinearLayout>
 
@@ -209,7 +209,7 @@
                         android:orientation="vertical"
                         android:layout_marginRight="5dp"
                         android:layout_marginLeft="0dp"
-                        android:onClick="goToAdminAllOffers"
+                        android:onClick="goToAdminAllOffer"
                         >
                         <ImageView
                             android:layout_width="match_parent"
@@ -226,6 +226,33 @@
                             android:layout_height="wrap_content"
                             android:text="OFFERS"
                             android:background="@color/colorAccent"
+                            android:textColor="#ffffff"
+                            android:layout_marginBottom="5dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="goToAdminReferOffer"
+                        >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="125dp"
+                            android:src="@drawable/refer_icon"
+                            android:background="#00bfff"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingBottom="15dp"
+                            android:paddingTop="30dp"
+                            />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SHARING"
+                            android:background="#00bfff"
                             android:textColor="#ffffff"
                             android:layout_marginBottom="5dp"/>
                     </LinearLayout>

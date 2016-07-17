@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_new_car"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ulgebra.luxscaradmin.AddOffer">
+    <ScrollView style="@style/mama">
+        <LinearLayout style="@style/mpwc"
+            android:orientation="vertical">
+            <LinearLayout style="@style/topTitleBar"
+                android:layout_marginTop="0dp">
+
+                <TextView
+                    style="@style/topTitleText"
+                    android:text="Sharing Offer"
+                    />
+                <Button style="@style/topTitleShadow" />
+
+            </LinearLayout>
+            <LinearLayout style="@style/mpwc"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+
+                >
+
+                <TextView
+                    style="@style/mpwc"
+                    android:text="Offer Details"
+                    android:paddingTop="16dp"
+                    android:paddingLeft="18dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:textSize="18dp"
+                    android:textColor="@android:color/darker_gray"
+                    android:background="#ffffff"/>
+            </LinearLayout>
+            <LinearLayout
+                style="@style/mpwc"
+                android:orientation="vertical"
+                android:paddingTop="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="#ffffff"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:paddingBottom="15dp"
+                >
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/oldCust"
+                        android:hint="Amount to Referrer"
+                        android:paddingLeft="10dp"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+                <TextView style="@style/mpwc"
+                    android:id="@+id/oldCusto"
+                    android:text="Currently Rs.20"
+                    android:textSize="18dp"
+                    android:gravity="end"
+                    android:textColor="@color/colorAccent"
+                    />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <AutoCompleteTextView
+                        style="@style/mpwc"
+                        android:id="@+id/newCust"
+                        android:hint="Amount to New Customer"
+                        android:paddingLeft="10dp"
+                        android:focusableInTouchMode="true"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+
+                <TextView style="@style/mpwc"
+                    android:id="@+id/newCusto"
+                    android:text="Currently Rs.20"
+                    android:focusableInTouchMode="true"
+                    android:textSize="18dp"
+                    android:gravity="end"
+                    android:textColor="@color/colorAccent"
+                    />
+
+
+
+                <Button
+                    android:id="@+id/upload_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="UPDATE"
+                    android:layout_marginBottom="30dp"
+                    android:background="#FF00ACC1"
+                    android:textColor="#ffffff"
+                    android:textSize="17dp"
+                    android:layout_marginTop="20dp"
+                    android:onClick="goToOTP"
+
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/longTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="xxx"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

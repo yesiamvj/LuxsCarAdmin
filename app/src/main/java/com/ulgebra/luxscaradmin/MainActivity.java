@@ -152,5 +152,9 @@ public class MainActivity extends AppCompatActivity
         Intent intent=new Intent(getApplicationContext(),AllOffers.class);
         startActivity(intent);
     }
+    public void goToAdminReferOffer(View view){
+        Intent intent=new Intent(getApplicationContext(),SharingOffer.class);
+        startActivity(intent);
+    }
 
 }

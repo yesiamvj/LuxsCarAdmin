@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class SingleUserDetails extends AppCompatActivity {
 
 
-    String user_name,user_mob,user_mail,user_id,user_licence_no,user_bookings,user_reg_date;
+    String user_name,user_mob,user_mail,user_id,user_licence_no,user_bookings,user_reg_date,user_password;
     int car_id,cost,total_cost;
     double adv_amt;
 
@@ -210,6 +210,7 @@ public class SingleUserDetails extends AppCompatActivity {
                         user_id=jsonChildNode.optString("user_id").toString();
                         user_bookings=jsonChildNode.optString("user_bookings").toString();
                         user_reg_date=jsonChildNode.optString("user_regdate").toString();
+                        user_password=jsonChildNode.optString("user_pass").toString();
 
 
 
@@ -256,6 +257,7 @@ public class SingleUserDetails extends AppCompatActivity {
             TextView userlic=(TextView)findViewById(R.id.userlic);
             TextView ride_totBook=(TextView)findViewById(R.id.ride_totBook);
             TextView ride_regDate=(TextView)findViewById(R.id.ride_regDate);
+            TextView user_passTxt=(TextView)findViewById(R.id.userpass);
             TextView ride_userId=(TextView)findViewById(R.id.bookingHeaderDets);
             userNameTxt.setText(user_name);
             usermobTxt.setText(user_mob);
@@ -264,6 +266,7 @@ public class SingleUserDetails extends AppCompatActivity {
             ride_totBook.setText(user_bookings);
             ride_regDate.setText(user_reg_date);
             ride_userId.setText("User ID "+user_id);
+            user_passTxt.setText(user_password);
 
 
         }

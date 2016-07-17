@@ -64,6 +64,7 @@
             android:parentActivityName=".BookingHistory" />
         <activity
             android:name=".CancelBooking"
+            android:noHistory="true"
             android:parentActivityName=".SingleBookingDetails" />
         <activity android:name=".Login_user" />
         <activity
@@ -71,6 +72,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SingleUserDetails"
+            android:noHistory="true"
             android:parentActivityName=".AllUsers" />
         <activity
             android:name=".ShowThisCarBookingHistory"
@@ -81,12 +83,18 @@
         <activity
             android:name=".ThisDateHistory"
             android:parentActivityName=".BookingViewType" />
-        <activity android:name=".AddOffer"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".AllOffers"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".SingleOfferDetails"
-            android:parentActivityName=".AllOffers"></activity>
+        <activity
+            android:name=".AddOffer"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AllOffers"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SingleOfferDetails"
+            android:noHistory="true"
+            android:parentActivityName=".AllOffers" />
+        <activity android:name=".SharingOffer"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

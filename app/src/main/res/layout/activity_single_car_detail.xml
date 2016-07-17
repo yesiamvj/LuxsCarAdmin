@@ -10,7 +10,7 @@
             <LinearLayout android:orientation="vertical" android:layout_marginTop="0.0dip" style="@style/topTitleBar">
                 <TextView
                     android:id="@+id/car_brand_name"
-                    android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Audi VB Tuning" style="@style/topTitleText" />
+                    android:textSize="20.0dip" android:textColor="@color/colorPrimary" android:text="Loading.." style="@style/topTitleText" />
                 <Button style="@style/topTitleShadow" />
             </LinearLayout>
 
@@ -22,19 +22,19 @@
                         style="@style/mpwc">
                         <TextView
 
-                            android:text="Car Number"
+                            android:text="@string/carDesc"
                             style="@style/confirmBooking_QueText" />
                         <TextView
                             android:id="@+id/car_number"
-                            android:text="Rs.1,000" style="@style/confirmBooking_AnsText" />
+                            android:text="Loading..." style="@style/confirmBooking_AnsText" />
                         <TextView
 
-                            android:text="Cost per Day"
+                            android:text="@string/costper"
                             style="@style/confirmBooking_QueText" />
                         <TextView
                             android:id="@+id/car_cost"
-                            android:text="Rs.1,000" style="@style/confirmBooking_AnsText" />
-                        <TextView android:text="Car Photos" style="@style/confirmBooking_QueText" />
+                            android:text="Loading.." style="@style/confirmBooking_AnsText" />
+                        <TextView android:text="@string/carPho" style="@style/confirmBooking_QueText" />
 
                         <LinearLayout
                             android:orientation="vertical"
@@ -46,7 +46,7 @@
                       </LinearLayout>
                     <Button
                         android:id="@+id/show_booksbtn"
-                        android:text="Show Bookings"
+                        android:text="@string/show_bookings"
                         android:textColor="#ffffff"
                         android:background="#00b9e8"
                         android:padding="10dp"
@@ -58,7 +58,7 @@
 
                     <Button
                         android:id="@+id/delt_btn"
-                        android:text="Delete Car"
+                        android:text="@string/delcr"
                         android:textColor="#ffffff"
                         android:background="#a20000"
                         android:padding="10dp"

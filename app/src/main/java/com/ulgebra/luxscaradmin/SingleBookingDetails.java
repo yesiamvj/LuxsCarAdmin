@@ -23,15 +23,17 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 
 public class SingleBookingDetails extends AppCompatActivity {
 
 
-    String edited_details,ride_discount,booking_sts,cancelled_on,cancel_reason,booking_username,booking_userMob,booking_iddd,car_image,cars_name,car_number,ride_form,ride_to,ride_advance,booked_on,ride_total_cost,car_reg_no;
+    String balToPayy,pickUpTime,pickUpLocation,edited_details,ride_discount,booking_sts,cancelled_on,cancel_reason,booking_username,booking_userMob,booking_iddd,car_image,cars_name,car_number,ride_form,ride_to,ride_advance,booked_on,ride_total_cost,car_reg_no;
 
     int car_id,cost,total_cost;
     double adv_amt;
@@ -211,9 +213,24 @@ public class SingleBookingDetails extends AppCompatActivity {
                          booked_on=jsonChildNode.optString("booked_on").toString();
                         booking_iddd=jsonChildNode.optString("booking_id").toString();
                         ride_total_cost=jsonChildNode.optString("ride_price").toString();
+                        ride_discount=jsonChildNode.optString("ride_discount").toString();
+                        pickUpTime=jsonChildNode.optString("pickUpTime").toString();
+                        pickUpLocation=jsonChildNode.optString("pickUpLocation").toString();
+                        balToPayy=jsonChildNode.optString("bal_to_pay").toString();
+
+
+
                         cars_name       = jsonChildNode.optString("car_name").toString();;
                         cost     = jsonChildNode.optInt("cost");
                         ride_discount=jsonChildNode.optString("ride_discount").toString();
+                        try {
+                            pickUpTime= URLDecoder.decode(pickUpTime,"UTF-8");
+                            Log.v("dev ti",pickUpTime);
+                            pickUpLocation=URLDecoder.decode(pickUpLocation,"UTF-8");
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+
 
                         car_reg_no=jsonChildNode.optString("car_no").toString();
                         car_number = jsonChildNode.optString("car_no").toString();
@@ -271,8 +288,13 @@ public class SingleBookingDetails extends AppCompatActivity {
             TextView bookingHeaderDets=(TextView)findViewById(R.id.bookingHeaderDets);
             TextView booking_user_name=(TextView)findViewById(R.id.ride_cusName);
             TextView booking_user_mobile=(TextView)findViewById(R.id.ride_cusMob);
+            TextView pickUpLocTxt=(TextView)findViewById(R.id.pickUpLocTxt);
+            TextView pickUpAtTxt=(TextView)findViewById(R.id.pickUpAtTxt);
+
+
+            TextView balToPayTxt=(TextView)findViewById(R.id.balToPay);
             TextView ride_sts=(TextView)findViewById(R.id.ride_sts);
-            ImageView car_image_inp=(ImageView)findViewById(R.id.car_image_inps);
+           // ImageView car_image_inp=(ImageView)findViewById(R.id.car_image_inps);
             Button cancel_bookBtn=(Button)findViewById(R.id.cancel_booking);
             final TextView adv_amont=(TextView)findViewById(R.id.adv_amount);
             final TextView tot_cost=(TextView)findViewById(R.id.tot_cost);
@@ -293,18 +315,20 @@ public class SingleBookingDetails extends AppCompatActivity {
                 }
             });
 
-            if(booking_sts.contains("9")){
-                ride_sts.setText("Booked On "+booked_on+"\n"+"Cancelled On "+cancelled_on+" \n Reason : "+cancel_reason);
-                bookingHeaderDets.setText("CANCELLED Booking ID : #"+booking_iddd);
-                bookingHeaderDets.setTextColor(Color.parseColor("#c0392b"));
-            }
+
             if(booking_sts.contains("5")){
                 ride_sts.setText("Booked On "+booked_on+"\n"+"Edited On "+cancelled_on+" \nDetails : "+edited_details);
                 bookingHeaderDets.setText("EDITED Booking ID : #"+booking_iddd);
                 bookingHeaderDets.setTextColor(Color.parseColor("#16a085"));
             }
-            else {
-                ride_sts.setText("Normal");
+            if(booking_sts.contains("9")){
+                ride_sts.setText("Booked On "+booked_on+"\n"+"Cancelled On "+cancelled_on+" \n Reason : "+cancel_reason);
+                bookingHeaderDets.setText("CANCELLED Booking ID : #"+booking_iddd);
+                bookingHeaderDets.setTextColor(Color.parseColor("#c0392b"));
+            }
+            if(booking_sts.contains("3")) {
+
+               ride_sts.setText("Normal");
                 bookingHeaderDets.setText("Booking ID : #"+booking_iddd+" On "+booked_on+"");
             }
 
@@ -315,7 +339,10 @@ public class SingleBookingDetails extends AppCompatActivity {
             car_name_inp.setText(cars_name);
             car_regNo.setText(car_reg_no);
              tot_cost.setText("Rs. "+ride_total_cost);
+            pickUpAtTxt.setText(pickUpTime);
+            pickUpLocTxt.setText(pickUpLocation);
 
+            balToPayTxt.setText("Rs."+balToPayy);
             adv_amont.setText("Rs "+ride_advance);
             car_cost.setText("Rs. "+cost+" / per day");
             rideDisc.setText("Rs. "+ride_discount+" from Total Cost");
@@ -325,7 +352,7 @@ public class SingleBookingDetails extends AppCompatActivity {
 
             }
             else {
-                new ImageLoadTask("http://luxscar.com/luxscar_app/"+car_image, car_image_inp).execute();
+              //  new ImageLoadTask("http://luxscar.com/luxscar_app/"+car_image, car_image_inp).execute();
 
             }
 

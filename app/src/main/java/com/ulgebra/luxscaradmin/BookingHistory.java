@@ -333,7 +333,7 @@ public class BookingHistory extends AppCompatActivity {
 
 
             }
-            else{
+            if(my_parent.getBookingStatus().contains("3")){
                 Log.v("bookingsts",bookingStatus+""+my_parent.getBooking_id());
                 bk_no_inp.setText("New Booking No "+my_parent.getBooking_id());
                 bk_no_inp.setBackgroundColor(Color.parseColor("#2980b9"));

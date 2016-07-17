@@ -32,6 +32,11 @@
                     <TextView
                         android:id="@+id/usermail"
                         android:text="Name" style="@style/confirmBooking_AnsText" />
+                    <TextView android:text="Password" style="@style/confirmBooking_QueText" />
+                    <TextView
+                        android:id="@+id/userpass"
+                        android:text="xxxx" style="@style/confirmBooking_AnsText" />
+
 
                     <TextView android:text="Licence No" style="@style/confirmBooking_QueText" />
                     <TextView

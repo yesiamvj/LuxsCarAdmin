@@ -14,7 +14,24 @@
     </string-array>
     <string name="title_activity_cars">Cars</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="lo">Loading...</string>
+    <string name="rideDate">Ride Date</string>
+    <string name="bookSts">Booking Status</string>
+    <string name="usrNme">Username</string>
+    <string name="usrMo">Mobile No</string>
+    <string name="carDesc">Car Description</string>
+    <string name="veh">Vehicle</string>
+    <string name="totCost">Total Cost</string>
+    <string name="advAmt">Advance Amount Paid</string>
+    <string name="discAmt">Discount Amount</string>
+    <string name="balPa">Balance Unpaid</string>
+    <string name="pickAt">Pick Up Location</string>
+    <string name="pickT">Pick Up Time</string>
+    <string name="costper">Cost per Day / 24 Hours</string>
+    <string name="carPho">Car Photos</string>
+    <string name="delcr">Delete Car</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="show_bookings">Show Bookings</string>
 </resources>

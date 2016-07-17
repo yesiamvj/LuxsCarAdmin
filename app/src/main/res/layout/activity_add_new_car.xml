@@ -83,7 +83,7 @@
                     <AutoCompleteTextView
                         style="@style/mpwc"
                         android:id="@+id/car_no"
-                        android:hint="Car number"
+                        android:hint="Car Description"
                         android:paddingLeft="10dp"
                         android:inputType="text"
                         android:maxLines="1"
