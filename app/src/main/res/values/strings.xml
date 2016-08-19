@@ -12,6 +12,20 @@
         <item>Cancelled Trip</item>
         <item>Other</item>
     </string-array>
+    <string-array name="fuel_type">
+        <item>Petrol</item>
+        <item>Diesel</item>
+    </string-array>
+    <string-array name="trans_type">
+        <item>Manual</item>
+        <item>Auto</item>
+    </string-array>
+    <string-array name="car_type">
+        <item>Seden</item>
+        <item>Hatchpack</item>
+        <item>SUV</item>
+    </string-array>
+
     <string name="title_activity_cars">Cars</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="lo">Loading...</string>
@@ -34,4 +48,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="show_bookings">Show Bookings</string>
+    <string name="edit_car_details">Edit Car Details</string>
 </resources>

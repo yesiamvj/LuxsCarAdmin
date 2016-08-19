@@ -34,8 +34,10 @@ import org.w3c.dom.Text;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
@@ -44,12 +46,12 @@ import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
  * Created by Vijayakumar on 08/07/2016.
  */
 
-public class BookingHistory extends AppCompatActivity {
+public class UsersSearchResult extends AppCompatActivity {
 
 
 
 
-    public ArrayList<Car_lists> parents;
+    public ArrayList<UsersList> parents;
     ListView listView;
     View rootView;
     ProgressDialog dialog;
@@ -57,7 +59,7 @@ public class BookingHistory extends AppCompatActivity {
     TextView from_to_inp;
     LongOperation longOperation=new LongOperation();
     private int ChildClickStatus=-1;
-    String bookingStatus,cancelReason,cancelledOn,editedOn,book_user_id;
+    String bookingStatus,cancelReason,cancelledOn,editedOn,user_filter_q;
 
     LinearLayout linearLayout;
 
@@ -67,16 +69,15 @@ public class BookingHistory extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_booking_history);
+        setContentView(R.layout.activity_all_users);
 
         Intent intent=getIntent();
-        if(intent.getExtras()!=null){
-            book_user_id=intent.getStringExtra("book_user_id");
+        user_filter_q=intent.getStringExtra("filter_q");
+        try {
+            user_filter_q= URLEncoder.encode(user_filter_q,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
-        else{
-            book_user_id="alll";
-        }
-
 
         try{
 //            FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -86,18 +87,18 @@ public class BookingHistory extends AppCompatActivity {
 //            }
 //            ft.addToBackStack(null);
 
-          //  DialogFragment dialogFragment = new DialogFragment();
+            //  DialogFragment dialogFragment = new DialogFragment();
 
             // dialogFragment.show(ft,"Loading");
             dialog = ProgressDialog.show(this, "Loading...", "Please wait...", true);
-         //   rootView = inflater.inflate(R.layout.activity_booking_history, container, false);
+            //   rootView = inflater.inflate(R.layout.activity_booking_history, container, false);
 
             linearLayout=(LinearLayout) findViewById(R.id.my_list_hold);
 
 
 
 
-            String serverURL = "http://luxscar.com/luxscar_app/show_hstry.php?user_id="+book_user_id+"&accessac=Admin123";
+            String serverURL = "http://luxscar.com/luxscar_app/searchUser.php?filterQuery="+user_filter_q;
 
             new LongOperation().execute(serverURL);
 
@@ -225,37 +226,27 @@ public class BookingHistory extends AppCompatActivity {
                 /*********** Process each JSON Node ************/
 
                 int lengthJsonArr = jsonMainNode.length();
-                final ArrayList<Car_lists> lists=new ArrayList<Car_lists>();
+                Log.i("net_err", lengthJsonArr+"is len");
+                final ArrayList<UsersList> lists=new ArrayList<UsersList>();
                 for(int i=0; i < lengthJsonArr; i++)
                 {
-                    final Car_lists mp=new Car_lists();
-                    Log.i("net_err", "foloop json");
+                    final UsersList mp=new UsersList();
+
 
                     JSONObject jsonChildNode = jsonMainNode.getJSONObject(i);
 
                     /******* Fetch node values **********/
-                    String name       = jsonChildNode.optString("car_name").toString();
-                    String ride     = jsonChildNode.optString("ride").toString();
-                    String id = jsonChildNode.optString("booking_id").toString();
-                    String bk_car_bookDate=jsonChildNode.optString("booked_date").toString();
-                    String bk_customer_name=jsonChildNode.optString("booked_username").toString();
-                    String bk_customer_mob=jsonChildNode.optString("booking_user_mobile").toString();
-                    bookingStatus=jsonChildNode.optString("booking_status").toString();
-                    cancelledOn=jsonChildNode.optString("cancelled_on").toString();
-                    cancelReason=jsonChildNode.optString("booking_cancel_reason").toString();
-                    editedOn=jsonChildNode.optString("edited_on").toString();
+                    String username       = jsonChildNode.optString("username").toString();
+                    String userMob     = jsonChildNode.optString("user_mob").toString();
+                    String userId=jsonChildNode.optString("user_id").toString();
+
+                    Log.i("net_err", "user anem"+username+" mo"+userMob);
 
 
-                    mp.set_carname(name);
-                    mp.setRide_dure(ride);
-                    mp.setBooking_id(id);
-                    mp.setBooked_on(bk_car_bookDate);
-                    mp.setBk_customer_name(bk_customer_name);
-                    mp.setBk_customer_mob(bk_customer_mob);
-                    mp.setBookingStatus(bookingStatus);
-                    mp.setCancelledOn(cancelledOn);
-                    mp.setCancelReason(cancelReason);
-                    mp.setEditedOn(editedOn);
+                    mp.setUsername(username);
+                    mp.setUser_id(userId);
+                    mp.setUser_mobile(userMob);
+
                     lists.add(mp);
                 }
                 Log.i("net_err", "out for json");
@@ -279,7 +270,7 @@ public class BookingHistory extends AppCompatActivity {
         }
 
     }
-    public void loadHosts(final ArrayList<Car_lists> newParents)
+    public void loadHosts(final ArrayList<UsersList> newParents)
     {
         if (newParents == null){
             Log.i("net_err", "lh returned");
@@ -294,76 +285,28 @@ public class BookingHistory extends AppCompatActivity {
 
 
         for(int i=0;i<parents.size();i++){
-            final Car_lists my_parent=parents.get(i);
-            View vi= LayoutInflater.from(getApplicationContext()).inflate(R.layout.single_history,null);
+            final UsersList my_parent=parents.get(i);
+            View vi= LayoutInflater.from(getApplicationContext()).inflate(R.layout.single_user,null);
 
-            TextView bk_no_inp=(TextView)vi.findViewById(R.id.booking_no);
-            TextView bk_ca_num_inp=(TextView)vi.findViewById(R.id.bk_car_name);
-            TextView bk_ride_dur=(TextView) vi.findViewById(R.id.bk_duration);
-            TextView bk_car_bookDate=(TextView) vi.findViewById(R.id.bk_car_bookDate);
+
             TextView booked_username=(TextView) vi.findViewById(R.id.bk_customer_name);
             TextView booked_userMob=(TextView) vi.findViewById(R.id.bk_customer_mob);
-            Button supSHa=(Button) vi.findViewById(R.id.supSHa);
 
-            LinearLayout holder_inp=(LinearLayout)vi.findViewById(R.id.single_hstry_hold);
-            //TextView ecit_txt=(TextView)vi.findViewById(R.id.bk_editd);
-            // ecit_txt.setText(my_parent.getBooking_id());
+            LinearLayout holder_inp=(LinearLayout)vi.findViewById(R.id.single_user_hold);
 
 
-
-
-
-
-
-
-
-            bk_ca_num_inp.setText(my_parent.getCar_name());
-            bk_ride_dur.setText(my_parent.getRide_dure());
-            bk_ca_num_inp.setText(""+my_parent.getCar_name());
-
-            booked_userMob.setText(my_parent.getBk_customer_mob());
-            booked_username.setText(my_parent.getBk_customer_name());
-            if(my_parent.getBookingStatus().contains("9")){
-                Log.v("bookingsts aa",bookingStatus+""+my_parent.getBooking_id());
-                bk_no_inp.setText("Cancelled Booking No "+my_parent.getBooking_id());
-                bk_no_inp.setBackgroundColor(Color.parseColor("#c0392b"));
-                supSHa.setBackgroundColor(Color.parseColor("#c0392b"));
-                bk_car_bookDate.setText("Booked On "+my_parent.getBooked_on()+"\n Cancelled On "+my_parent.getCancelledOn()+" Reason" +
-                        ": "+my_parent.getCancelReason());
-
-
-            }
-            if(my_parent.getBookingStatus().contains("5")){
-                Log.v("bookingsts aa",bookingStatus+""+my_parent.getBooking_id());
-                bk_no_inp.setText("Edited Booking No "+my_parent.getBooking_id());
-                bk_no_inp.setBackgroundColor(Color.parseColor("#16a085"));
-                supSHa.setBackgroundColor(Color.parseColor("#16a085"));
-                bk_car_bookDate.setText("Booked On "+my_parent.getBooked_on()+"\n Edited On "+my_parent.getEditedOn()+"");
-
-
-            }
-            if(my_parent.getBookingStatus().contains("3")){
-                Log.v("bookingsts",bookingStatus+""+my_parent.getBooking_id());
-                bk_no_inp.setText("New Booking No "+my_parent.getBooking_id());
-                bk_no_inp.setBackgroundColor(Color.parseColor("#2980b9"));
-                supSHa.setBackgroundColor(Color.parseColor("#2980b9"));
-                bk_car_bookDate.setText("On "+my_parent.getBooked_on());
-            }
-
+            booked_username.setText(my_parent.getUsername());
+            booked_userMob.setText(my_parent.getUser_mobile());
 
 
             holder_inp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(getApplicationContext(),SingleBookingDetails.class);
-                    intent.putExtra("booking_idd",my_parent.getBooking_id());
+                    Intent intent=new Intent(getApplicationContext(),SingleUserDetails.class);
+                    intent.putExtra("user_idd",my_parent.getUser_id());
                     startActivity(intent);
                 }
             });
-
-
-
-
 
             linearLayout.addView(vi);
 

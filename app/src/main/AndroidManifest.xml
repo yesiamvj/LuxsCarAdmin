@@ -93,7 +93,16 @@
             android:name=".SingleOfferDetails"
             android:noHistory="true"
             android:parentActivityName=".AllOffers" />
-        <activity android:name=".SharingOffer"
+        <activity
+            android:name=".SharingOffer"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".EditCar"
+            android:parentActivityName=".SingleCarDetail" />
+        <activity
+            android:name=".UsersSearchResult"
+            android:parentActivityName=".SearchBooking" />
+        <activity android:name=".AdminCollections"
             android:parentActivityName=".MainActivity"></activity>
     </application>
 

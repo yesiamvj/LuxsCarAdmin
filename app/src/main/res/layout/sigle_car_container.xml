@@ -18,6 +18,7 @@
             />
         <ImageView
             android:id="@+id/car_image"
+            android:padding="50dp"
             style="@style/browse_car_image" />
     </LinearLayout>
     <Button

@@ -156,5 +156,9 @@ public class MainActivity extends AppCompatActivity
         Intent intent=new Intent(getApplicationContext(),SharingOffer.class);
         startActivity(intent);
     }
+    public void goToAdminAllPayments(View view){
+        Intent intent=new Intent(getApplicationContext(),AdminCollections.class);
+        startActivity(intent);
+    }
 
 }

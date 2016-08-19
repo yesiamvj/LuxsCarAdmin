@@ -258,6 +258,49 @@
                     </LinearLayout>
 
 
+
+
+
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/mpwc" android:weightSum="2" android:layout_marginBottom="7dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="0dp"
+                        android:onClick="goToAdminAllPayments"
+                        >
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="125dp"
+                            android:src="@drawable/moneyy"
+                            android:background="#E05060"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="0dp"
+                            android:paddingTop="35dp"
+                            />
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Payments"
+                            android:background="#E05060"
+                            android:textColor="#ffffff"
+                            android:layout_marginBottom="5dp"/>
+                    </LinearLayout>
+
+
+
+
+
+
+
+
                 </LinearLayout>
 
 

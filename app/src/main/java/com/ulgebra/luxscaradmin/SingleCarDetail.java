@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -298,6 +299,7 @@ public class SingleCarDetail extends AppCompatActivity {
         LinearLayout linearLayout=(LinearLayout)findViewById(R.id.img_lin_cont);
         Button del_btn_inp=(Button)findViewById(R.id.delt_btn);
         Button showBook_btn_inp=(Button)findViewById(R.id.show_booksbtn);
+        Button editBtn=(Button)findViewById(R.id.edit_btn);
 
         del_btn_inp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -316,6 +318,16 @@ public class SingleCarDetail extends AppCompatActivity {
                 Intent intentk=new Intent(getApplicationContext(),ShowThisCarBookingHistory.class);
                 intentk.putExtra("car_id",car_id);
                 intentk.putExtra("car_name",cars_name);
+                startActivity(intentk);
+
+            }
+        });
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentk=new Intent(getApplicationContext(),EditCar.class);
+                intentk.putExtra("car_id",car_id);
                 startActivity(intentk);
 
             }

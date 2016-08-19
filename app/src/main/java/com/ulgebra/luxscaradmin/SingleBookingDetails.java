@@ -1,6 +1,8 @@
 package com.ulgebra.luxscaradmin;
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -287,7 +289,7 @@ public class SingleBookingDetails extends AppCompatActivity {
             TextView car_regNo=(TextView)findViewById(R.id.ride_carNo);
             TextView bookingHeaderDets=(TextView)findViewById(R.id.bookingHeaderDets);
             TextView booking_user_name=(TextView)findViewById(R.id.ride_cusName);
-            TextView booking_user_mobile=(TextView)findViewById(R.id.ride_cusMob);
+            final TextView booking_user_mobile=(TextView)findViewById(R.id.ride_cusMob);
             TextView pickUpLocTxt=(TextView)findViewById(R.id.pickUpLocTxt);
             TextView pickUpAtTxt=(TextView)findViewById(R.id.pickUpAtTxt);
 
@@ -325,6 +327,7 @@ public class SingleBookingDetails extends AppCompatActivity {
                 ride_sts.setText("Booked On "+booked_on+"\n"+"Cancelled On "+cancelled_on+" \n Reason : "+cancel_reason);
                 bookingHeaderDets.setText("CANCELLED Booking ID : #"+booking_iddd);
                 bookingHeaderDets.setTextColor(Color.parseColor("#c0392b"));
+                cancel_bookBtn.setVisibility(View.GONE);
             }
             if(booking_sts.contains("3")) {
 
@@ -346,6 +349,25 @@ public class SingleBookingDetails extends AppCompatActivity {
             adv_amont.setText("Rs "+ride_advance);
             car_cost.setText("Rs. "+cost+" / per day");
             rideDisc.setText("Rs. "+ride_discount+" from Total Cost");
+
+            booking_user_mobile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("luxscar_booking_user_mobile", booking_userMob);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getApplicationContext(),"Mobile Number Copied",Toast.LENGTH_SHORT).show();
+                }
+            });
+            pickUpLocTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("luxscar_pickUpLocation", pickUpLocation);
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getApplicationContext(),"Pick Up Location Copied",Toast.LENGTH_SHORT).show();
+                }
+            });
 
 
             if(car_image.equals("null")){

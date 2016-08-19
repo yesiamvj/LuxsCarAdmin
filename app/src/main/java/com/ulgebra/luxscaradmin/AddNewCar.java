@@ -27,12 +27,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -55,8 +59,8 @@ import java.util.List;
 
 public class AddNewCar extends AppCompatActivity {
 
-    AutoCompleteTextView model_inp,brand_name_inp,car_no_inp,cost_inp;
-    String model_no,brand_name,car_no,cost,visible_status;
+    AutoCompleteTextView model_inp,brand_name_inp,cost_inp,extra_km_chr,extra_hr_chr;
+    String model_no,brand_name,car_no,cost,visible_status,extra_kmm,extra_hrr;
        Switch visible_switch_inp;
     int one_img=0;
     int one_img_sts=-1;
@@ -68,7 +72,10 @@ public class AddNewCar extends AppCompatActivity {
     String imageEncoded;
     int tot_en=-1;
     Button upload_btn_inp;
+    Spinner fueltype,transtype,cartype;
+    CheckBox musicc,blueto,auxx,usbb,videoo,fwd,rwd,ac_sys,power_steer,power_window,seaterr;
     String[] tot_files=new String[30];
+
     ProgressDialog dialog = null;
     HttpEntity resEntity;
     List<String> imagesEncodedList;
@@ -77,6 +84,41 @@ public class AddNewCar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_car);
+
+        fueltype=(Spinner) findViewById(R.id.fuel_type);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.fuel_type, R.layout.single_spin_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fueltype.setAdapter(adapter);
+
+        transtype=(Spinner) findViewById(R.id.trans_type);
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.trans_type, R.layout.single_spin_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        transtype.setAdapter(adapter2);
+
+        cartype=(Spinner) findViewById(R.id.car_type);
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this,
+                R.array.car_type, R.layout.single_spin_item);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cartype.setAdapter(adapter3);
+
+        musicc=(CheckBox) findViewById(R.id.musicch);
+        seaterr=(CheckBox) findViewById(R.id.seater);
+        auxx=(CheckBox) findViewById(R.id.auxs);
+        videoo=(CheckBox) findViewById(R.id.videoo);
+        usbb=(CheckBox) findViewById(R.id.usbbs);
+        blueto=(CheckBox) findViewById(R.id.bluto);
+        fwd=(CheckBox) findViewById(R.id.fwdd);
+        rwd=(CheckBox) findViewById(R.id.rwdd);
+        ac_sys=(CheckBox) findViewById(R.id.acsys);
+        power_steer=(CheckBox) findViewById(R.id.powersteer);
+        power_window=(CheckBox) findViewById(R.id.powerWindow);
+
+
+
+
+
         btnSelect = (Button) findViewById(R.id.hu);
         btnSelect.setOnClickListener(new View.OnClickListener() {
 
@@ -90,10 +132,15 @@ public class AddNewCar extends AppCompatActivity {
 
             brand_name_inp=(AutoCompleteTextView)findViewById(R.id.addCar_brandName);
             model_inp=(AutoCompleteTextView)findViewById(R.id.addCar_modelName);
-            car_no_inp=(AutoCompleteTextView)findViewById(R.id.car_no);
+
             cost_inp=(AutoCompleteTextView)findViewById(R.id.cost_per_day);
+            extra_km_chr=(AutoCompleteTextView)findViewById(R.id.extra_km_charge);
+            extra_hr_chr=(AutoCompleteTextView)findViewById(R.id.extra_hour_charge);
+
             visible_switch_inp=(Switch)findViewById(R.id.visible_switch);
             upload_btn_inp=(Button)findViewById(R.id.upload_btn);
+
+
 
 
             upload_btn_inp.setOnClickListener(new View.OnClickListener() {
@@ -107,8 +154,47 @@ public class AddNewCar extends AppCompatActivity {
                     }
                     model_no=model_inp.getText().toString();
                     brand_name=brand_name_inp.getText().toString();
-                    car_no=car_no_inp.getText().toString();
+
                     cost=cost_inp.getText().toString();
+                    extra_hrr=extra_hr_chr.getText().toString();
+                    extra_kmm=extra_km_chr.getText().toString();
+
+                    car_no=cartype.getSelectedItem().toString()+" - Type Car , ";
+                    car_no+=fueltype.getSelectedItem().toString()+" - Fuel , ";
+                    car_no+=transtype.getSelectedItem().toString()+" Transmission , ";
+                    if(seaterr.isChecked()){
+                        car_no+="Seater , ";
+                    }
+                    if(auxx.isChecked()){
+                        car_no+=" AUX , ";
+                    }
+                    if(musicc.isChecked()){
+                        car_no+="Music , ";
+                    }
+                    if(videoo.isChecked()){
+                        car_no+="Video , ";
+                    }
+                    if(usbb.isChecked()){
+                        car_no+="USB , ";
+                    }
+                    if(blueto.isChecked()){
+                        car_no+="Bluetooth , ";
+                    }
+                    if(fwd.isChecked()){
+                        car_no+="FWD , ";
+                    }
+                    if(rwd.isChecked()){
+                        car_no+="RWD , ";
+                    }
+                    if(ac_sys.isChecked()){
+                        car_no+="AC , ";
+                    }
+                    if(power_steer.isChecked()){
+                        car_no+="Power Steering , ";
+                    }
+                    if(power_window.isChecked()){
+                        car_no+="Power Window ";
+                    }
 
 
                     boolean fill_all=true;
@@ -122,11 +208,7 @@ public class AddNewCar extends AppCompatActivity {
                         brand_name_inp.setError("Required");
                         brand_name_inp.requestFocus();
                     }
-                    if(TextUtils.isEmpty(car_no)){
-                        fill_all=false;
-                        car_no_inp.setError("Required");
-                        car_no_inp.requestFocus();
-                    }
+
                     if(TextUtils.isEmpty(cost)){
                         fill_all=false;
                         cost_inp.setError("Required");
@@ -139,6 +221,9 @@ public class AddNewCar extends AppCompatActivity {
 
 
                         final String otp_url = otp_nums;
+
+                        Log.v("add_new_car_desc",car_no);
+
                         new LongOperation().execute(otp_url);
                     }else{
                         Snackbar.make(v,"Please Fill in all fields", Snackbar.LENGTH_LONG).show();
@@ -650,6 +735,8 @@ public class AddNewCar extends AppCompatActivity {
                 reqEntity.addPart("model_name",new StringBody(model_no));
                 reqEntity.addPart("car_no",new StringBody(car_no));
                 reqEntity.addPart("cost_per_day",new StringBody(cost));
+                reqEntity.addPart("xtra_km",new StringBody(extra_kmm));
+                reqEntity.addPart("xtra_hr",new StringBody(extra_hrr));
                 reqEntity.addPart("visible_status",new StringBody(visible_status));
 
 

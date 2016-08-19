@@ -34,6 +34,7 @@ public class SingleUserDetails extends AppCompatActivity {
     String user_name,user_mob,user_mail,user_id,user_licence_no,user_bookings,user_reg_date,user_password;
     int car_id,cost,total_cost;
     double adv_amt;
+    Button viewBooksBtn;
 
     public ArrayList<Car_lists> parents;
 
@@ -44,9 +45,19 @@ public class SingleUserDetails extends AppCompatActivity {
         Intent intentzc = getIntent();
 
 
-        String booking_idd= intentzc.getStringExtra("user_idd");
+        final String booking_idd= intentzc.getStringExtra("user_idd");
 
         setContentView(R.layout.activity_single_user_details);
+        viewBooksBtn=(Button)findViewById(R.id.viewBooksBtn);
+
+        viewBooksBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intenta=new Intent(getApplicationContext(),BookingHistory.class);
+                intenta.putExtra("book_user_id",booking_idd);
+                startActivity(intenta);
+            }
+        });
 
         Dialog= new ProgressDialog(SingleUserDetails.this);
         Dialog.setMessage("please wait");
@@ -267,6 +278,7 @@ public class SingleUserDetails extends AppCompatActivity {
             ride_regDate.setText(user_reg_date);
             ride_userId.setText("User ID "+user_id);
             user_passTxt.setText(user_password);
+            viewBooksBtn.setText("View Bookings - "+user_bookings);
 
 
         }
